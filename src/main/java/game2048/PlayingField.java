@@ -33,7 +33,7 @@ public class PlayingField {
                 if (numbers[i][j] == null) {
                     System.out.print("      |");
                 } else {
-                    System.out.printf("%6d|", numbers[i][j].getNumber());
+                    System.out.printf("%s%6d\u001b[0m|", numbers[i][j].getColorFormat(), numbers[i][j].getNumber());
                 }
             }
 
@@ -47,6 +47,7 @@ public class PlayingField {
         boolean action = false;
 
         for (int j = 0; j < PLAYING_FIELD_SIZE; j++) {
+            boolean hasAdded = false;
             for (int i = 1; i < PLAYING_FIELD_SIZE; i++) {
                 if (numbers[i][j] != null){
                     //TODO Method
@@ -55,11 +56,11 @@ public class PlayingField {
                             numbers[k - 1][j] = numbers[k][j];
                             numbers[k][j] = null;
                             action = true;
-                        } else if (numbers[k - 1][j].getNumber() == numbers[k][j].getNumber()){
+                        } else if ((numbers[k - 1][j].getNumber() == numbers[k][j].getNumber()) && !hasAdded){
                             numbers[k - 1][j].incrementPower();
                             numbers[k][j] = null;
                             action = true;
-                            break;
+                            hasAdded = true;
                         }
                     }
                     //
@@ -76,6 +77,7 @@ public class PlayingField {
         boolean action = false;
 
         for (int j = 0; j < PLAYING_FIELD_SIZE; j++) {
+            boolean hasAdded = false;
             for (int i = PLAYING_FIELD_SIZE - 1; i >= 0; i--) {
                 if (numbers[i][j] != null){
                     //TODO Method
@@ -84,11 +86,11 @@ public class PlayingField {
                             numbers[k + 1][j] = numbers[k][j];
                             numbers[k][j] = null;
                             action = true;
-                        } else if (numbers[k + 1][j].getNumber() == numbers[k][j].getNumber()){
+                        } else if ((numbers[k + 1][j].getNumber() == numbers[k][j].getNumber())&& !hasAdded){
                             numbers[k + 1][j].incrementPower();
                             numbers[k][j] = null;
                             action = true;
-                            break;
+                            hasAdded = true;
                         }
                     }
                     //
@@ -105,6 +107,7 @@ public class PlayingField {
         boolean action = false;
 
         for (int i = 0; i < PLAYING_FIELD_SIZE; i++) {
+            boolean hasAdded = false;
             for (int j = 1; j < PLAYING_FIELD_SIZE; j++) {
                 if (numbers[i][j] != null){
                     //TODO Method
@@ -113,11 +116,11 @@ public class PlayingField {
                             numbers[i][k - 1] = numbers[i][k];
                             numbers[i][k] = null;
                             action = true;
-                        } else if (numbers[i][k - 1].getNumber() == numbers[i][k].getNumber()){
+                        } else if ((numbers[i][k - 1].getNumber() == numbers[i][k].getNumber())&& !hasAdded){
                             numbers[i][k - 1].incrementPower();
                             numbers[i][k] = null;
                             action = true;
-                            break;
+                            hasAdded = true;
                         }
                     }
                     //
@@ -134,6 +137,7 @@ public class PlayingField {
         boolean action = false;
 
         for (int i = 0; i < PLAYING_FIELD_SIZE; i++) {
+            boolean hasAdded = false;
             for (int j = PLAYING_FIELD_SIZE - 1; j >= 0; j--) {
                 if (numbers[i][j] != null){
                     //TODO Method
@@ -142,11 +146,11 @@ public class PlayingField {
                             numbers[i][k + 1] = numbers[i][k];
                             numbers[i][k] = null;
                             action = true;
-                        } else if (numbers[i][k + 1].getNumber() == numbers[i][k].getNumber()){
+                        } else if ((numbers[i][k + 1].getNumber() == numbers[i][k].getNumber()) && !hasAdded){
                             numbers[i][k + 1].incrementPower();
                             numbers[i][k] = null;
                             action = true;
-                            break;
+                            hasAdded = true;
                         }
                     }
                     //

@@ -7,22 +7,25 @@ import java.util.Random;
  */
 public class Number {
     public static final int BASE_NUMBER = 2;
-    public static final int INITIAL_POWER = 2;
 
     private int power;
-
-    private int number;
 
     private Random random = new Random();
 
     Number() {
-        power = random.nextInt(INITIAL_POWER) + 1;
+        if (random.nextInt(10) < 8) {
+            power = 1;
+        } else {
+            power = 2;
+        }
     }
-
-
 
     public void incrementPower() {
         power++;
+    }
+
+    public String getColorFormat() {
+        return "\u001b[3" + power % 8 + "m";
     }
 
     public int getNumber() {

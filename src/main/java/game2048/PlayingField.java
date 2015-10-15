@@ -13,6 +13,12 @@ public class PlayingField {
     private Number[][] numbers = new Number[4][4];
 
     PlayingField() {
+        for (int i = 0; i < PLAYING_FIELD_SIZE; i++) {
+            for (int j = 0; j < PLAYING_FIELD_SIZE;j++) {
+                numbers[i][j] = null;
+            }
+        }
+
         addNumbers(COUNT_OF_STARTING_NUMBERS);
     }
 
@@ -38,19 +44,119 @@ public class PlayingField {
     }
 
     public void moveUp() {
-        
+        boolean action = false;
+
+        for (int j = 0; j < PLAYING_FIELD_SIZE; j++) {
+            for (int i = 1; i < PLAYING_FIELD_SIZE; i++) {
+                if (numbers[i][j] != null){
+                    //TODO Method
+                    for (int k = i; k > 0; k--) {
+                        if (numbers[k - 1][j] == null) {
+                            numbers[k - 1][j] = numbers[k][j];
+                            numbers[k][j] = null;
+                            action = true;
+                        } else if (numbers[k - 1][j].getNumber() == numbers[k][j].getNumber()){
+                            numbers[k - 1][j].incrementPower();
+                            numbers[k][j] = null;
+                            action = true;
+                            break;
+                        }
+                    }
+                    //
+                }
+            }
+        }
+
+        if (action){
+            addNumbers(COUNT_OF_NEW_NUMBERS_AFTER_MOVE);
+        }
     }
 
     public void moveDown(){
+        boolean action = false;
 
+        for (int j = 0; j < PLAYING_FIELD_SIZE; j++) {
+            for (int i = PLAYING_FIELD_SIZE - 1; i >= 0; i--) {
+                if (numbers[i][j] != null){
+                    //TODO Method
+                    for (int k = i; k < PLAYING_FIELD_SIZE - 1; k++) {
+                        if (numbers[k + 1][j] == null) {
+                            numbers[k + 1][j] = numbers[k][j];
+                            numbers[k][j] = null;
+                            action = true;
+                        } else if (numbers[k + 1][j].getNumber() == numbers[k][j].getNumber()){
+                            numbers[k + 1][j].incrementPower();
+                            numbers[k][j] = null;
+                            action = true;
+                            break;
+                        }
+                    }
+                    //
+                }
+            }
+        }
+
+        if (action){
+            addNumbers(COUNT_OF_NEW_NUMBERS_AFTER_MOVE);
+        }
     }
 
     public void moveLeft(){
+        boolean action = false;
 
+        for (int i = 0; i < PLAYING_FIELD_SIZE; i++) {
+            for (int j = 1; j < PLAYING_FIELD_SIZE; j++) {
+                if (numbers[i][j] != null){
+                    //TODO Method
+                    for (int k = j; k > 0; k--) {
+                        if (numbers[i][k - 1] == null) {
+                            numbers[i][k - 1] = numbers[i][k];
+                            numbers[i][k] = null;
+                            action = true;
+                        } else if (numbers[i][k - 1].getNumber() == numbers[i][k].getNumber()){
+                            numbers[i][k - 1].incrementPower();
+                            numbers[i][k] = null;
+                            action = true;
+                            break;
+                        }
+                    }
+                    //
+                }
+            }
+        }
+
+        if (action){
+            addNumbers(COUNT_OF_NEW_NUMBERS_AFTER_MOVE);
+        }
     }
 
     public void moveRight(){
+        boolean action = false;
 
+        for (int i = 0; i < PLAYING_FIELD_SIZE; i++) {
+            for (int j = PLAYING_FIELD_SIZE - 1; j >= 0; j--) {
+                if (numbers[i][j] != null){
+                    //TODO Method
+                    for (int k = j; k < PLAYING_FIELD_SIZE - 1; k++) {
+                        if (numbers[i][k + 1] == null) {
+                            numbers[i][k + 1] = numbers[i][k];
+                            numbers[i][k] = null;
+                            action = true;
+                        } else if (numbers[i][k + 1].getNumber() == numbers[i][k].getNumber()){
+                            numbers[i][k + 1].incrementPower();
+                            numbers[i][k] = null;
+                            action = true;
+                            break;
+                        }
+                    }
+                    //
+                }
+            }
+        }
+
+        if (action){
+            addNumbers(COUNT_OF_NEW_NUMBERS_AFTER_MOVE);
+        }
     }
 
     private void addNumbers(int count) {

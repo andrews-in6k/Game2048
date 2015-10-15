@@ -19,6 +19,8 @@ public class Number {
         power = random.nextInt(INITIAL_POWER) + 1;
     }
 
+
+
     public void incrementPower() {
         power++;
     }

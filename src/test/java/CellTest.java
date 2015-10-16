@@ -15,14 +15,14 @@ public class CellTest {
     }
 
     @Test
-    public void testGetValue() {
+    public void testGetCellValue() {
         Cell cell = new Cell();
 
-        assertThat(cell.getValue(), is(0));
+        assertThat(cell.getCellValue(), is(0));
 
         cell = new Cell(2);
 
-        assertThat(cell.getValue(), is(2));
+        assertThat(cell.getCellValue(), is(2));
     }
 
     @Test
@@ -31,7 +31,7 @@ public class CellTest {
 
         cell.setCellValue(4);
 
-        assertThat(cell.getValue(), is(4));
+        assertThat(cell.getCellValue(), is(4));
     }
 
     @Test
@@ -40,15 +40,15 @@ public class CellTest {
 
         cell.incrementPower();
 
-        assertThat(cell.getValue(), is(0));
+        assertThat(cell.getCellValue(), is(0));
 
         cell.setCellValue(2);
         cell.incrementPower();
 
-        assertThat(cell.getValue(),is(4));
+        assertThat(cell.getCellValue(),is(4));
 
         cell.incrementPower();
 
-        assertThat(cell.getValue(),is(8));
+        assertThat(cell.getCellValue(),is(8));
     }
 }

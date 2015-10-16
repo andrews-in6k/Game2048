@@ -19,7 +19,7 @@ public class Cell {
         cellValue = cellValue * 2;
     }
 
-    public int getValue() {
+    public int getCellValue() {
         return cellValue;
     }
 

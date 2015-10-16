@@ -6,13 +6,19 @@ package game2048;
 public class GameField {
     public static final int FIELD_SIZE = 4;
 
-    private int[][] cell = new int[FIELD_SIZE][FIELD_SIZE];
+    private Cell[][] cell = new Cell[FIELD_SIZE][FIELD_SIZE];
 
     private String cells = "";
 
     CellValueGenerator cellValueGenerator;
 
     public GameField(CellValueGenerator cellValueGenerator){
+        for (int i = 0; i < FIELD_SIZE; i++) {
+            for (int j = 0; j < FIELD_SIZE; j++) {
+                cell[i][j] = new Cell();
+            }
+        }
+
         this.cellValueGenerator = cellValueGenerator;
     }
 
@@ -21,7 +27,7 @@ public class GameField {
 
         for (int i = 0; i < FIELD_SIZE; i++) {
             for (int j = 0; j < FIELD_SIZE; j++) {
-                cells += cell[i][j] + " ";
+                cells += cell[i][j].getCellValue() + " ";
             }
 
             cells += "\n";
@@ -38,7 +44,7 @@ public class GameField {
             int i = emptyCellSelector.getRowIndex();
             int j = emptyCellSelector.getColumnIndex();
 
-            cell[i][j] = cellValueGenerator.generateCellValue();
+            cell[i][j].setCellValue(cellValueGenerator.generateCellValue());
         }
     }
 
@@ -46,7 +52,7 @@ public class GameField {
     public boolean hasEmptyCell() {
         for (int i = 0; i < FIELD_SIZE; i++) {
             for (int j = 0; j < FIELD_SIZE; j++) {
-                if (cell[i][j] == 0){
+                if (cell[i][j].getCellValue() == 0){
                     return true;
                 }
             }
@@ -57,7 +63,7 @@ public class GameField {
     public boolean hasCellWith2048() {
         for (int i = 0; i < FIELD_SIZE; i++) {
             for (int j = 0; j < FIELD_SIZE; j++) {
-                if (cell[i][j] == 2048){
+                if (cell[i][j].getCellValue() == 2048){
                     return true;
                 }
             }

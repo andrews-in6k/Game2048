@@ -13,10 +13,10 @@ public class RandomEmptyCellSelector implements EmptyCellSelector {
 
     private List<int[]> emptyCellList = new ArrayList<>();
 
-    public RandomEmptyCellSelector(int[][] cell) {
+    public RandomEmptyCellSelector(Cell[][] cell) {
         for (int i = 0; i < GameField.FIELD_SIZE; i++) {
             for (int j = 0; j < GameField.FIELD_SIZE; j++) {
-                if (cell[i][j] == 0) {
+                if (cell[i][j].getCellValue() == 0) {
                     int[] emptyCellIndexes = new int[2];
                     emptyCellIndexes[0] = i;
                     emptyCellIndexes[1] = j;

@@ -5,4 +5,7 @@ package game2048;
  */
 public class MoveCells {
 
+    public void moveUp(Cell[][] cell) {
+
+    }
 }

@@ -5,5 +5,5 @@ package game2048;
  */
 public interface EmptyCellSelector {
 
-    Cell getEmptyCell(Cell[][] cells);
+    Cell getEmptyCell(Cell[][] cell);
 }

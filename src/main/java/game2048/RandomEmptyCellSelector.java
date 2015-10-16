@@ -11,11 +11,11 @@ public class RandomEmptyCellSelector implements EmptyCellSelector {
 
     private List<Cell> emptyCellList = new ArrayList<>();
 
-    public Cell getEmptyCell(Cell[][] cells) {
+    public Cell getEmptyCell(Cell[][] cell) {
         for (int i = 0; i < GameField.FIELD_SIZE; i++) {
             for (int j = 0; j < GameField.FIELD_SIZE; j++) {
-                if (cells[i][j].getCellValue() == 0) {
-                    emptyCellList.add(cells[i][j]);
+                if (cell[i][j].getCellValue() == 0) {
+                    emptyCellList.add(cell[i][j]);
                 }
             }
         }

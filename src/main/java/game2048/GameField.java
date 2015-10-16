@@ -32,18 +32,32 @@ public class GameField {
 
 
     public void fillEmptyCell() {
-        if (hasEmpty()) {
+        if (hasEmptyCell()) {
             EmptyCellSelector emptyCellSelector = new RandomEmptyCellSelector(cell);
 
-            cell[emptyCellSelector.getRowIndex()][emptyCellSelector.getColumnIndex()] = cellValueGenerator.generateCellValue();
+            int i = emptyCellSelector.getRowIndex();
+            int j = emptyCellSelector.getColumnIndex();
+
+            cell[i][j] = cellValueGenerator.generateCellValue();
         }
     }
 
 
-    public boolean hasEmpty() {
+    public boolean hasEmptyCell() {
         for (int i = 0; i < FIELD_SIZE; i++) {
             for (int j = 0; j < FIELD_SIZE; j++) {
                 if (cell[i][j] == 0){
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    public boolean hasCellWith2048() {
+        for (int i = 0; i < FIELD_SIZE; i++) {
+            for (int j = 0; j < FIELD_SIZE; j++) {
+                if (cell[i][j] == 2048){
                     return true;
                 }
             }

@@ -1,18 +1,31 @@
 package game2048;
 
 /**
- * Created by employee on 10/15/15.
+ * Created by employee on 10/16/15.
  */
 public class GameField {
+    public static final int FIELD_SIZE = 4;
 
-    private String cells = "0 0 0 0\n0 0 0 0\n0 0 0 0\n0 0 0 0\n";
+    private int[][] cellsValues = new int[FIELD_SIZE][FIELD_SIZE];
 
-    @Override
+    private String cells = "";
+
     public String toString() {
+        for (int i = 0; i < FIELD_SIZE; i++) {
+            for (int j = 0; j < FIELD_SIZE; j++) {
+                cells += cellsValues[i][j] + " ";
+            }
+
+            cells += "\n";
+        }
+
         return cells;
     }
 
+
     public void fillEmptyCell(int value) {
-        cells = "2 0 0 0\n0 0 0 0\n0 0 0 0\n0 0 0 0\n";
+        cellsValues[0][0] = value;
     }
+
+
 }

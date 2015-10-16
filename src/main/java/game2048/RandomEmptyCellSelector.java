@@ -9,33 +9,24 @@ import java.util.Random;
  */
 public class RandomEmptyCellSelector implements EmptyCellSelector {
 
-    private int randomResult;
+    private List<Cell> emptyCellList = new ArrayList<>();
 
-    private List<int[]> emptyCellList = new ArrayList<>();
-
-    public RandomEmptyCellSelector(Cell[][] cell) {
+    public Cell getEmptyCell(Cell[][] cells) {
         for (int i = 0; i < GameField.FIELD_SIZE; i++) {
             for (int j = 0; j < GameField.FIELD_SIZE; j++) {
-                if (cell[i][j].getCellValue() == 0) {
-                    int[] emptyCellIndexes = new int[2];
-                    emptyCellIndexes[0] = i;
-                    emptyCellIndexes[1] = j;
-                    emptyCellList.add(emptyCellIndexes);
+                if (cells[i][j].getCellValue() == 0) {
+                    emptyCellList.add(cells[i][j]);
                 }
             }
         }
 
+        int randomResult = 0;
         if (!emptyCellList.isEmpty()) {
             Random random = new Random();
             randomResult = random.nextInt(emptyCellList.size());
         }
+
+        return emptyCellList.get(randomResult);
     }
 
-    public int getRowIndex() {
-        return emptyCellList.get(randomResult)[0];
-    }
-
-    public int getColumnIndex() {
-        return emptyCellList.get(randomResult)[1];
-    }
 }

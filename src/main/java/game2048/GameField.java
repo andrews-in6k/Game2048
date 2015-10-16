@@ -5,10 +5,9 @@ package game2048;
  */
 public class GameField {
     public static final int FIELD_SIZE = 4;
+    public static final int VALUE_REQUIRED_FOR_VICTORY = 2048;
 
     private Cell[][] cell = new Cell[FIELD_SIZE][FIELD_SIZE];
-
-    private String cells = "";
 
     CellValueGenerator cellValueGenerator;
 
@@ -23,7 +22,7 @@ public class GameField {
     }
 
     public String toString() {
-        cells = "";
+        String cells = "";
 
         for (int i = 0; i < FIELD_SIZE; i++) {
             for (int j = 0; j < FIELD_SIZE; j++) {
@@ -39,12 +38,9 @@ public class GameField {
 
     public void fillEmptyCell() {
         if (hasEmptyCell()) {
-            EmptyCellSelector emptyCellSelector = new RandomEmptyCellSelector(cell);
+            EmptyCellSelector emptyCellSelector = new RandomEmptyCellSelector();
 
-            int i = emptyCellSelector.getRowIndex();
-            int j = emptyCellSelector.getColumnIndex();
-
-            cell[i][j].setCellValue(cellValueGenerator.generateCellValue());
+            emptyCellSelector.getEmptyCell(cell).setCellValue(cellValueGenerator.generateCellValue());
         }
     }
 
@@ -63,7 +59,7 @@ public class GameField {
     public boolean hasCellWith2048() {
         for (int i = 0; i < FIELD_SIZE; i++) {
             for (int j = 0; j < FIELD_SIZE; j++) {
-                if (cell[i][j].getCellValue() == 2048){
+                if (cell[i][j].getCellValue() == VALUE_REQUIRED_FOR_VICTORY){
                     return true;
                 }
             }

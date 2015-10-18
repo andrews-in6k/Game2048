@@ -7,6 +7,8 @@ public class GameField {
     public static final int FIELD_SIZE = 4;
     public static final int VALUE_REQUIRED_FOR_VICTORY = 2048;
 
+    private static int score;
+
     private Cell[][] cell = new Cell[FIELD_SIZE][FIELD_SIZE];
 
     CellValueGenerator cellValueGenerator;
@@ -17,6 +19,8 @@ public class GameField {
                 cell[i][j] = new Cell();
             }
         }
+
+        score = 0;
 
         this.cellValueGenerator = cellValueGenerator;
     }
@@ -56,6 +60,25 @@ public class GameField {
         return false;
     }
 
+    public void move(Direction direction) {
+        MoveCells moveCells = new MoveCells();
+
+        switch (direction) {
+            case UP:
+                moveCells.moveUp(cell);
+                break;
+            case DOWN:
+
+                break;
+            case LEFT:
+
+                break;
+            case RIGHT:
+
+                break;
+        }
+    }
+
     public boolean hasCellWith2048() {
         for (int i = 0; i < FIELD_SIZE; i++) {
             for (int j = 0; j < FIELD_SIZE; j++) {
@@ -65,5 +88,13 @@ public class GameField {
             }
         }
         return false;
+    }
+
+    public static void incrementScore(int value) {
+        GameField.score += value;
+    }
+
+    public static int getScore() {
+        return score;
     }
 }

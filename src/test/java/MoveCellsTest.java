@@ -72,14 +72,56 @@ public class MoveCellsTest {
                 "0 0 0 0 \n"
         ));
 
-        //case 5
-        generateMoveUpCase5();
+        //case final
+        generateFinalMoveCase();
         moveCells.moveUp(cell);
         assertThat(cellToString(), is(
                 "4 4 2 4 \n" +
                 "4 8 4 4 \n" +
                 "0 0 2 0 \n" +
                 "0 0 4 0 \n"
+        ));
+    }
+
+    @Test
+    public void testMoveDown() {
+        MoveCells moveCells = new MoveCells();
+
+        generateFinalMoveCase();
+        moveCells.moveDown(cell);
+        assertThat(cellToString(), is(
+                "0 0 2 0 \n" +
+                "0 0 4 0 \n" +
+                "4 4 2 4 \n" +
+                "4 8 4 4 \n"
+        ));
+    }
+
+    @Test
+    public void testMoveLeft() {
+        MoveCells moveCells = new MoveCells();
+
+        generateFinalMoveCase();
+        moveCells.moveLeft(cell);
+        assertThat(cellToString(), is(
+                "4 4 0 0 \n" +
+                "4 4 2 0 \n" +
+                "2 4 2 4 \n" +
+                "2 8 0 0 \n"
+        ));
+    }
+
+    @Test
+    public void testMoveRight() {
+        MoveCells moveCells = new MoveCells();
+
+        generateFinalMoveCase();
+        moveCells.moveRight(cell);
+        assertThat(cellToString(), is(
+                "0 0 4 4 \n" +
+                "0 4 4 2 \n" +
+                "2 4 2 4 \n" +
+                "0 0 2 8 \n"
         ));
     }
 
@@ -105,7 +147,7 @@ public class MoveCellsTest {
         }
     }
 
-    private void generateMoveUpCase1(){
+    private void generateMoveUpCase1() {
         generateEmptyCells();
 
         cell[2][0] = new Cell(2);
@@ -114,7 +156,7 @@ public class MoveCellsTest {
         cell[3][3] = new Cell(2);
     }
 
-    private void generateMoveUpCase2(){
+    private void generateMoveUpCase2() {
         generateEmptyCells();
 
         cell[2][0] = new Cell(2);
@@ -125,7 +167,7 @@ public class MoveCellsTest {
         cell[1][3] = new Cell(4);
     }
 
-    private void generateMoveUpCase3(){
+    private void generateMoveUpCase3() {
         generateEmptyCells();
 
         cell[0][0] = new Cell(2);
@@ -133,7 +175,7 @@ public class MoveCellsTest {
         cell[1][0] = new Cell(4);
     }
 
-    private void generateMoveUpCase4(){
+    private void generateMoveUpCase4() {
         generateEmptyCells();
 
         cell[0][0] = new Cell(2);
@@ -146,7 +188,7 @@ public class MoveCellsTest {
         cell[3][2] = new Cell(8);
     }
 
-    private void generateMoveUpCase5(){
+    private void generateFinalMoveCase() {
         generateEmptyCells();
 
         cell[0][0] = new Cell(2);

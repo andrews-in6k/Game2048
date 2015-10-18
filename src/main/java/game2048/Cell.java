@@ -19,11 +19,17 @@ public class Cell {
         cellValue = cellValue * 2;
     }
 
+    public void setCellValue(int cellValue) {
+        this.cellValue = cellValue;
+    }
+
     public int getCellValue() {
         return cellValue;
     }
 
-    public void setCellValue(int cellValue) {
-        this.cellValue = cellValue;
+    public String getCellColor() {
+        int index = (int)(Math.log(cellValue)/Math.log(2)) % 8;
+        CellColor[] cellColors = CellColor.values();
+        return cellColors[index].toString();
     }
 }

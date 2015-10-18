@@ -23,6 +23,9 @@ public class GameField {
         score = 0;
 
         this.cellValueGenerator = cellValueGenerator;
+
+        fillEmptyCell();
+        fillEmptyCell();
     }
 
     public String toString() {
@@ -62,20 +65,25 @@ public class GameField {
 
     public void move(Direction direction) {
         MoveCells moveCells = new MoveCells();
+        Boolean hasMove = false;
 
         switch (direction) {
             case UP:
-                moveCells.moveUp(cell);
+                hasMove = moveCells.moveUp(cell);
                 break;
             case DOWN:
-
+                hasMove = moveCells.moveDown(cell);
                 break;
             case LEFT:
-
+                hasMove = moveCells.moveLeft(cell);
                 break;
             case RIGHT:
-
+                hasMove = moveCells.moveRight(cell);
                 break;
+        }
+
+        if (hasMove) {
+            fillEmptyCell();
         }
     }
 
@@ -96,5 +104,9 @@ public class GameField {
 
     public static int getScore() {
         return score;
+    }
+
+    public Cell[][] getCell() {
+        return cell;
     }
 }

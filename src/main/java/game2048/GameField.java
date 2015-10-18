@@ -5,6 +5,7 @@ package game2048;
  */
 public class GameField {
     public static final int FIELD_SIZE = 4;
+    public static final int NEW_GAME_NUMBERS_COUNT = 2;
     public static final int VALUE_REQUIRED_FOR_VICTORY = 2048;
 
     private static int score;
@@ -23,9 +24,20 @@ public class GameField {
         score = 0;
 
         this.cellValueGenerator = cellValueGenerator;
+    }
 
-        fillEmptyCell();
-        fillEmptyCell();
+    public void startNewGame() {
+        for (int i = 0; i < FIELD_SIZE; i++) {
+            for (int j = 0; j < FIELD_SIZE; j++) {
+                cell[i][j] = new Cell();
+            }
+        }
+
+        score = 0;
+
+        for (int i = 0; i < NEW_GAME_NUMBERS_COUNT; i++) {
+            fillEmptyCell();
+        }
     }
 
     public String toString() {
@@ -95,6 +107,29 @@ public class GameField {
                 }
             }
         }
+        return false;
+    }
+
+    public boolean hasAvailableMove() {
+        if (!hasEmptyCell()){
+            for (int i = 0; i < FIELD_SIZE; i++) {
+                for (int j = 0; j < FIELD_SIZE; j++) {
+                    if (i != FIELD_SIZE - 1){
+                        if (cell[i][j].getCellValue() == cell[i + 1][j].getCellValue()) {
+                            return true;
+                        }
+                    }
+                    if (j != FIELD_SIZE - 1){
+                        if (cell[i][j].getCellValue() == cell[i][j + 1].getCellValue()) {
+                            return true;
+                        }
+                    }
+                }
+            }
+        } else {
+            return true;
+        }
+
         return false;
     }
 

@@ -76,4 +76,24 @@ public class GameFieldTest {
         assertThat(gameField.hasCellWith2048(), is(true));
     }
 
+    @Test
+    public void testHasAvailableMove(){
+        GameField gameField = new GameField(new StaticCellValueGenerator(2));
+
+        assertThat(gameField.hasAvailableMove(), is(true));
+
+        for (int i = 0; i < (gameField.FIELD_SIZE * gameField.FIELD_SIZE); i++) {
+            gameField.fillEmptyCell();
+        }
+
+        assertThat(gameField.hasAvailableMove(), is(true));
+
+        gameField = new GameField(new ProgressiveCellValueGenerator());
+
+        for (int i = 0; i < (gameField.FIELD_SIZE * gameField.FIELD_SIZE); i++) {
+            gameField.fillEmptyCell();
+        }
+
+        assertThat(gameField.hasAvailableMove(), is(false));
+    }
 }

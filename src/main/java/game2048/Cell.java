@@ -28,8 +28,13 @@ public class Cell {
     }
 
     public String getCellColor() {
+        return calculateCellColor();
+    }
+
+    private String calculateCellColor() {
         int index = (int)(Math.log(cellValue)/Math.log(2)) % 8;
         CellColor[] cellColors = CellColor.values();
+
         return cellColors[index].toString();
     }
 }

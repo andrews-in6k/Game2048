@@ -8,10 +8,10 @@ public enum CellColor {
     DEFAULT("\u001b[0m"),
     RED("\u001b[31m"),
     GREEN("\u001b[32m"),
-    YELOW("\u001b[33m"),
+    YELLOW("\u001b[33m"),
     BLUE("\u001b[34m"),
     PURPLE("\u001b[35m"),
-    WHITEBLUE("\u001b[36m");
+    SKY_BLUE("\u001b[36m");
 
     private String color;
 

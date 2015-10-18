@@ -8,30 +8,20 @@ public class GameField {
     public static final int NEW_GAME_NUMBERS_COUNT = 2;
     public static final int VALUE_REQUIRED_FOR_VICTORY = 2048;
 
-    private static int score;
+    private static int score = 0;
 
     private Cell[][] cell = new Cell[FIELD_SIZE][FIELD_SIZE];
 
     CellValueGenerator cellValueGenerator;
 
     public GameField(CellValueGenerator cellValueGenerator){
-        for (int i = 0; i < FIELD_SIZE; i++) {
-            for (int j = 0; j < FIELD_SIZE; j++) {
-                cell[i][j] = new Cell();
-            }
-        }
-
-        score = 0;
+        initEmptyCells();
 
         this.cellValueGenerator = cellValueGenerator;
     }
 
     public void startNewGame() {
-        for (int i = 0; i < FIELD_SIZE; i++) {
-            for (int j = 0; j < FIELD_SIZE; j++) {
-                cell[i][j] = new Cell();
-            }
-        }
+        initEmptyCells();
 
         score = 0;
 
@@ -40,20 +30,13 @@ public class GameField {
         }
     }
 
-    public String toString() {
-        String cells = "";
-
+    private void initEmptyCells(){
         for (int i = 0; i < FIELD_SIZE; i++) {
             for (int j = 0; j < FIELD_SIZE; j++) {
-                cells += cell[i][j].getCellValue() + " ";
+                cell[i][j] = new Cell();
             }
-
-            cells += "\n";
         }
-
-        return cells;
     }
-
 
     public void fillEmptyCell() {
         if (hasEmptyCell()) {
@@ -72,8 +55,10 @@ public class GameField {
                 }
             }
         }
+
         return false;
     }
+
 
     public void move(Direction direction) {
         MoveCells moveCells = new MoveCells();
@@ -111,7 +96,7 @@ public class GameField {
     }
 
     public boolean hasAvailableMove() {
-        if (!hasEmptyCell()){
+        if (!hasEmptyCell()) {
             for (int i = 0; i < FIELD_SIZE; i++) {
                 for (int j = 0; j < FIELD_SIZE; j++) {
                     if (i != FIELD_SIZE - 1){
@@ -119,6 +104,7 @@ public class GameField {
                             return true;
                         }
                     }
+
                     if (j != FIELD_SIZE - 1){
                         if (cell[i][j].getCellValue() == cell[i][j + 1].getCellValue()) {
                             return true;
@@ -143,5 +129,19 @@ public class GameField {
 
     public Cell[][] getCell() {
         return cell;
+    }
+
+    public String toString() {
+        String cells = "";
+
+        for (int i = 0; i < FIELD_SIZE; i++) {
+            for (int j = 0; j < FIELD_SIZE; j++) {
+                cells += cell[i][j].getCellValue() + " ";
+            }
+
+            cells += "\n";
+        }
+
+        return cells;
     }
 }

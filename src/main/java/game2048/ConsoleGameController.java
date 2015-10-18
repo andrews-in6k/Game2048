@@ -14,82 +14,99 @@ public class ConsoleGameController implements GameController{
 
     private PrintStream printStream = new PrintStream(System.out);
 
+    private Scanner scanner =  new Scanner(System.in);
+
+    private boolean isExitPressed;
+    private boolean winner;
+    private char enteredChar;
+
     public void startController() {
-        Scanner scanner = new Scanner(System.in);
+        isExitPressed = false;
+        winner = false;
 
-        boolean iter = true;
-        boolean winner = false;
+        while (!isExitPressed) {
 
-        while (iter) {
-            printStream.println("n - new game");
-            printStream.println("8 - move up");
-            printStream.println("2 - move down");
-            printStream.println("4 - move left");
-            printStream.println("6 - move right");
-            printStream.println("e - exit");
+            gameControl();
 
-            char ch = scanner.next().charAt(0);
-            switch (ch) {
-                case 'n':
-                    gameField.startNewGame();
-                    break;
-                case '8':
-                    gameField.move(Direction.UP);
-                    break;
-                case '2':
-                    gameField.move(Direction.DOWN);
-                    break;
-                case '4':
-                    gameField.move(Direction.LEFT);
-                    break;
-                case '6':
-                    gameField.move(Direction.RIGHT);
-                    break;
-                case 'e':
-                    iter = false;
-                    break;
-            }
+            hasWinner();
 
-            if (!winner) {
-                if (gameField.hasCellWith2048()) {
-                    printStream.println("YOU ARE THE WINNER");
-                    printStream.println("1 - keep going");
-                    printStream.println("n - new game");
-                    printStream.println("e - exit");
+            hasLooser();
 
-                    ch = scanner.next().charAt(0);
-                    switch (ch) {
-                        case '1':
-                            winner = true;
-                            break;
-                        case 'n':
-                            gameField.startNewGame();
-                            break;
-                        case 'e':
-                            iter = false;
-                            break;
-                    }
-                }
-            }
+            gameFieldPrinter = new ANSIGameFieldPrinter(printStream);
+            gameFieldPrinter.printGameField(gameField);
+        }
+    }
 
-            if (!gameField.hasAvailableMove()) {
-                printStream.println("YOU ARE LOOSE");
+    private void gameControl() {
+        printStream.println("n - new game");
+        printStream.println("8 - move up");
+        printStream.println("2 - move down");
+        printStream.println("4 - move left");
+        printStream.println("6 - move right");
+        printStream.println("e - exit");
+
+        enteredChar = scanner.next().charAt(0);
+        switch (enteredChar) {
+            case 'n':
+                gameField.startNewGame();
+                break;
+            case '8':
+                gameField.move(Direction.UP);
+                break;
+            case '2':
+                gameField.move(Direction.DOWN);
+                break;
+            case '4':
+                gameField.move(Direction.LEFT);
+                break;
+            case '6':
+                gameField.move(Direction.RIGHT);
+                break;
+            case 'e':
+                isExitPressed = true;
+                break;
+        }
+    }
+
+    protected void hasWinner() {
+        if (!winner) {
+            if (gameField.hasCellWith2048()) {
+                printStream.println("YOU ARE THE WINNER");
+                printStream.println("1 - keep going");
                 printStream.println("n - new game");
                 printStream.println("e - exit");
 
-                ch = scanner.next().charAt(0);
-                switch (ch) {
+                enteredChar = scanner.next().charAt(0);
+                switch (enteredChar) {
+                    case '1':
+                        winner = true;
+                        break;
                     case 'n':
                         gameField.startNewGame();
                         break;
                     case 'e':
-                        iter = false;
+                        isExitPressed = true;
                         break;
                 }
             }
+        }
+    }
 
-            gameFieldPrinter = new ANSIGameFieldPrinter(printStream);
-            gameFieldPrinter.printGameField(gameField);
+    private void hasLooser() {
+        if (!gameField.hasAvailableMove()) {
+            printStream.println("YOU ARE LOOSE");
+            printStream.println("n - new game");
+            printStream.println("e - exit");
+
+            enteredChar = scanner.next().charAt(0);
+            switch (enteredChar) {
+                case 'n':
+                    gameField.startNewGame();
+                    break;
+                case 'e':
+                    isExitPressed = true;
+                    break;
+            }
         }
     }
 }

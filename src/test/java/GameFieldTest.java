@@ -19,6 +19,7 @@ public class GameFieldTest {
     @Test
     public void testGameFieldToString() {
         GameField gameField = new GameField(new RandomCellValueGenerator());
+
         assertThat(gameField.toString(), is(
                 "0 0 0 0 \n" +
                 "0 0 0 0 \n" +
@@ -30,7 +31,6 @@ public class GameFieldTest {
     @Test
     public void testFillEmptyCell() {
         GameField gameField = new GameField(new StaticCellValueGenerator(4));
-
 
         gameField.fillEmptyCell();
         assertThat(gameField.toString(), containsString("4"));

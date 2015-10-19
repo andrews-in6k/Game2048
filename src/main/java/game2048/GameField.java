@@ -10,7 +10,7 @@ public class GameField {
 
     private static int score = 0;
 
-    private Cell[][] cell = new Cell[FIELD_SIZE][FIELD_SIZE];
+    private Cell[][] cells = new Cell[FIELD_SIZE][FIELD_SIZE];
 
     CellValueGenerator cellValueGenerator;
 
@@ -33,7 +33,7 @@ public class GameField {
     private void initEmptyCells(){
         for (int i = 0; i < FIELD_SIZE; i++) {
             for (int j = 0; j < FIELD_SIZE; j++) {
-                cell[i][j] = new Cell();
+                cells[i][j] = new Cell();
             }
         }
     }
@@ -42,7 +42,7 @@ public class GameField {
         if (hasEmptyCell()) {
             EmptyCellSelector emptyCellSelector = new RandomEmptyCellSelector();
 
-            emptyCellSelector.getEmptyCell(cell).setCellValue(cellValueGenerator.generateCellValue());
+            emptyCellSelector.getEmptyCell(cells).setCellValue(cellValueGenerator.generateCellValue());
         }
     }
 
@@ -50,7 +50,7 @@ public class GameField {
     public boolean hasEmptyCell() {
         for (int i = 0; i < FIELD_SIZE; i++) {
             for (int j = 0; j < FIELD_SIZE; j++) {
-                if (cell[i][j].getCellValue() == 0){
+                if (cells[i][j].getCellValue() == 0){
                     return true;
                 }
             }
@@ -66,16 +66,16 @@ public class GameField {
 
         switch (direction) {
             case UP:
-                hasMove = moveCells.moveUp(cell);
+                hasMove = moveCells.moveUp(cells);
                 break;
             case DOWN:
-                hasMove = moveCells.moveDown(cell);
+                hasMove = moveCells.moveDown(cells);
                 break;
             case LEFT:
-                hasMove = moveCells.moveLeft(cell);
+                hasMove = moveCells.moveLeft(cells);
                 break;
             case RIGHT:
-                hasMove = moveCells.moveRight(cell);
+                hasMove = moveCells.moveRight(cells);
                 break;
         }
 
@@ -87,7 +87,7 @@ public class GameField {
     public boolean hasCellWith2048() {
         for (int i = 0; i < FIELD_SIZE; i++) {
             for (int j = 0; j < FIELD_SIZE; j++) {
-                if (cell[i][j].getCellValue() == VALUE_REQUIRED_FOR_VICTORY){
+                if (cells[i][j].getCellValue() == VALUE_REQUIRED_FOR_VICTORY){
                     return true;
                 }
             }
@@ -100,13 +100,13 @@ public class GameField {
             for (int i = 0; i < FIELD_SIZE; i++) {
                 for (int j = 0; j < FIELD_SIZE; j++) {
                     if (i != FIELD_SIZE - 1){
-                        if (cell[i][j].getCellValue() == cell[i + 1][j].getCellValue()) {
+                        if (cells[i][j].getCellValue() == cells[i + 1][j].getCellValue()) {
                             return true;
                         }
                     }
 
                     if (j != FIELD_SIZE - 1){
-                        if (cell[i][j].getCellValue() == cell[i][j + 1].getCellValue()) {
+                        if (cells[i][j].getCellValue() == cells[i][j + 1].getCellValue()) {
                             return true;
                         }
                     }
@@ -127,8 +127,8 @@ public class GameField {
         return score;
     }
 
-    public Cell[][] getCell() {
-        return cell;
+    public Cell[][] getCells() {
+        return cells;
     }
 
     public String toString() {
@@ -136,7 +136,7 @@ public class GameField {
 
         for (int i = 0; i < FIELD_SIZE; i++) {
             for (int j = 0; j < FIELD_SIZE; j++) {
-                cells += cell[i][j].getCellValue() + " ";
+                cells += this.cells[i][j].getCellValue() + " ";
             }
 
             cells += "\n";

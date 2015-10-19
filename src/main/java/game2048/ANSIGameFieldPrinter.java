@@ -21,11 +21,11 @@ public class ANSIGameFieldPrinter implements GameFieldPrinter{
             printStream.print("|");
 
             for (int j = 0; j < GameField.FIELD_SIZE; j++) {
-                if (gameField.getCell()[i][j].getCellValue() == 0){
+                if (gameField.getCells()[i][j].getCellValue() == 0){
                     printStream.print("      |");
                 } else {
-                    printStream.printf("%s%6d%s|", gameField.getCell()[i][j].getCellColor(),
-                            gameField.getCell()[i][j].getCellValue(),
+                    printStream.printf("%s%6d%s|", gameField.getCells()[i][j].getCellColor(),
+                            gameField.getCells()[i][j].getCellValue(),
                             CellColor.DEFAULT);
                 }
             }

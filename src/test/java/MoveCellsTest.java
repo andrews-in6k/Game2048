@@ -11,7 +11,7 @@ import static org.hamcrest.core.Is.is;
  */
 public class MoveCellsTest {
 
-    Cell[][] cell = new Cell[GameField.FIELD_SIZE][GameField.FIELD_SIZE];
+    Cell[][] cells = new Cell[GameField.FIELD_SIZE][GameField.FIELD_SIZE];
 
     @Test
     public void testMoveCells() {
@@ -24,7 +24,7 @@ public class MoveCellsTest {
 
         //test empty
         generateEmptyCells();
-        moveCells.moveUp(cell);
+        moveCells.moveUp(cells);
         assertThat(cellToString(), is(
                 "0 0 0 0 \n" +
                 "0 0 0 0 \n" +
@@ -34,7 +34,7 @@ public class MoveCellsTest {
 
         //case 1
         generateMoveUpCase1();
-        moveCells.moveUp(cell);
+        moveCells.moveUp(cells);
         assertThat(cellToString(), is(
                 "2 2 2 2 \n" +
                 "0 0 0 0 \n" +
@@ -44,7 +44,7 @@ public class MoveCellsTest {
 
         //case 2
         generateMoveUpCase2();
-        moveCells.moveUp(cell);
+        moveCells.moveUp(cells);
         assertThat(cellToString(), is(
                 "2 0 2 2 \n" +
                 "4 0 4 4 \n" +
@@ -54,7 +54,7 @@ public class MoveCellsTest {
 
         //case 3
         generateMoveUpCase3();
-        moveCells.moveUp(cell);
+        moveCells.moveUp(cells);
         assertThat(cellToString(), is(
                 "2 4 0 0 \n" +
                 "4 0 0 0 \n" +
@@ -64,7 +64,7 @@ public class MoveCellsTest {
 
         //case 4
         generateMoveUpCase4();
-        moveCells.moveUp(cell);
+        moveCells.moveUp(cells);
         assertThat(cellToString(), is(
                 "4 8 16 4 \n" +
                 "0 0 0 0 \n" +
@@ -74,7 +74,7 @@ public class MoveCellsTest {
 
         //case final
         generateFinalMoveCase();
-        moveCells.moveUp(cell);
+        moveCells.moveUp(cells);
         assertThat(cellToString(), is(
                 "4 4 2 4 \n" +
                 "4 8 4 4 \n" +
@@ -88,7 +88,7 @@ public class MoveCellsTest {
         MoveCells moveCells = new MoveCells();
 
         generateFinalMoveCase();
-        moveCells.moveDown(cell);
+        moveCells.moveDown(cells);
         assertThat(cellToString(), is(
                 "0 0 2 0 \n" +
                 "0 0 4 0 \n" +
@@ -102,7 +102,7 @@ public class MoveCellsTest {
         MoveCells moveCells = new MoveCells();
 
         generateFinalMoveCase();
-        moveCells.moveLeft(cell);
+        moveCells.moveLeft(cells);
         assertThat(cellToString(), is(
                 "4 4 0 0 \n" +
                 "4 4 2 0 \n" +
@@ -116,7 +116,7 @@ public class MoveCellsTest {
         MoveCells moveCells = new MoveCells();
 
         generateFinalMoveCase();
-        moveCells.moveRight(cell);
+        moveCells.moveRight(cells);
         assertThat(cellToString(), is(
                 "0 0 4 4 \n" +
                 "0 4 4 2 \n" +
@@ -130,7 +130,7 @@ public class MoveCellsTest {
 
         for (int i = 0; i < GameField.FIELD_SIZE; i++) {
             for (int j = 0; j < GameField.FIELD_SIZE; j++) {
-                cells += cell[i][j].getCellValue() + " ";
+                cells += this.cells[i][j].getCellValue() + " ";
             }
 
             cells += "\n";
@@ -142,7 +142,7 @@ public class MoveCellsTest {
     private void generateEmptyCells() {
         for (int i = 0; i < GameField.FIELD_SIZE; i++) {
             for (int j = 0; j < GameField.FIELD_SIZE; j++) {
-                cell[i][j] = new Cell();
+                cells[i][j] = new Cell();
             }
         }
     }
@@ -150,62 +150,62 @@ public class MoveCellsTest {
     private void generateMoveUpCase1() {
         generateEmptyCells();
 
-        cell[2][0] = new Cell(2);
-        cell[3][1] = new Cell(2);
-        cell[3][2] = new Cell(2);
-        cell[3][3] = new Cell(2);
+        cells[2][0] = new Cell(2);
+        cells[3][1] = new Cell(2);
+        cells[3][2] = new Cell(2);
+        cells[3][3] = new Cell(2);
     }
 
     private void generateMoveUpCase2() {
         generateEmptyCells();
 
-        cell[2][0] = new Cell(2);
-        cell[3][0] = new Cell(4);
-        cell[0][2] = new Cell(2);
-        cell[3][2] = new Cell(4);
-        cell[0][3] = new Cell(2);
-        cell[1][3] = new Cell(4);
+        cells[2][0] = new Cell(2);
+        cells[3][0] = new Cell(4);
+        cells[0][2] = new Cell(2);
+        cells[3][2] = new Cell(4);
+        cells[0][3] = new Cell(2);
+        cells[1][3] = new Cell(4);
     }
 
     private void generateMoveUpCase3() {
         generateEmptyCells();
 
-        cell[0][0] = new Cell(2);
-        cell[0][1] = new Cell(4);
-        cell[1][0] = new Cell(4);
+        cells[0][0] = new Cell(2);
+        cells[0][1] = new Cell(4);
+        cells[1][0] = new Cell(4);
     }
 
     private void generateMoveUpCase4() {
         generateEmptyCells();
 
-        cell[0][0] = new Cell(2);
-        cell[0][1] = new Cell(4);
-        cell[1][0] = new Cell(2);
-        cell[1][2] = new Cell(8);
-        cell[1][3] = new Cell(2);
-        cell[2][1] = new Cell(4);
-        cell[2][3] = new Cell(2);
-        cell[3][2] = new Cell(8);
+        cells[0][0] = new Cell(2);
+        cells[0][1] = new Cell(4);
+        cells[1][0] = new Cell(2);
+        cells[1][2] = new Cell(8);
+        cells[1][3] = new Cell(2);
+        cells[2][1] = new Cell(4);
+        cells[2][3] = new Cell(2);
+        cells[3][2] = new Cell(8);
     }
 
     private void generateFinalMoveCase() {
         generateEmptyCells();
 
-        cell[0][0] = new Cell(2);
-        cell[0][1] = new Cell(2);
-        cell[0][2] = new Cell(2);
-        cell[0][3] = new Cell(2);
-        cell[1][0] = new Cell(2);
-        cell[1][1] = new Cell(2);
-        cell[1][2] = new Cell(4);
-        cell[1][3] = new Cell(2);
-        cell[2][0] = new Cell(2);
-        cell[2][1] = new Cell(4);
-        cell[2][2] = new Cell(2);
-        cell[2][3] = new Cell(4);
-        cell[3][0] = new Cell(2);
-        cell[3][1] = new Cell(4);
-        cell[3][2] = new Cell(4);
-        cell[3][3] = new Cell(0);
+        cells[0][0] = new Cell(2);
+        cells[0][1] = new Cell(2);
+        cells[0][2] = new Cell(2);
+        cells[0][3] = new Cell(2);
+        cells[1][0] = new Cell(2);
+        cells[1][1] = new Cell(2);
+        cells[1][2] = new Cell(4);
+        cells[1][3] = new Cell(2);
+        cells[2][0] = new Cell(2);
+        cells[2][1] = new Cell(4);
+        cells[2][2] = new Cell(2);
+        cells[2][3] = new Cell(4);
+        cells[3][0] = new Cell(2);
+        cells[3][1] = new Cell(4);
+        cells[3][2] = new Cell(4);
+        cells[3][3] = new Cell(0);
     }
 }

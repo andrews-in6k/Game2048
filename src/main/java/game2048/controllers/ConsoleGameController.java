@@ -20,9 +20,11 @@ public class ConsoleGameController implements GameController {
     private boolean isExitPressed;
     private boolean winner;
     private char enteredChar;
+    private GameFieldPrinter gameFieldPrinter;
 
     public ConsoleGameController(GameField gameField) {
         this.gameField = gameField;
+        gameFieldPrinter = new ANSIGameFieldPrinter(printStream);
     }
 
     public void startController() {
@@ -37,7 +39,6 @@ public class ConsoleGameController implements GameController {
 
             hasLooser();
 
-            GameFieldPrinter gameFieldPrinter = new ANSIGameFieldPrinter(printStream);
             gameFieldPrinter.printGameField(gameField);
         }
     }

@@ -17,11 +17,7 @@ public class Cell {
     }
 
     public boolean isEmpty() {
-        if (cellValue == 0) {
-            return true;
-        }
-
-        return false;
+        return cellValue == 0;
     }
 
     public void incrementPower() {

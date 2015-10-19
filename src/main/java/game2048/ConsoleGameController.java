@@ -38,12 +38,7 @@ public class ConsoleGameController implements GameController {
     }
 
     private void gameProcessControl() {
-        printStream.println("n - new game");
-        printStream.println("8 - move up");
-        printStream.println("2 - move down");
-        printStream.println("4 - move left");
-        printStream.println("6 - move right");
-        printStream.println("e - exit");
+        printGameProcessHeader();
 
         enteredChar = scanner.next().charAt(0);
         switch (enteredChar) {
@@ -71,10 +66,7 @@ public class ConsoleGameController implements GameController {
     protected void hasWinner() {
         if (!winner) {
             if (gameField.hasCellWithValueRequiredForVictory()) {
-                printStream.println("YOU ARE THE WINNER");
-                printStream.println("1 - keep going");
-                printStream.println("n - new game");
-                printStream.println("e - exit");
+                printWinnerMenu();
 
                 enteredChar = scanner.next().charAt(0);
                 switch (enteredChar) {
@@ -94,9 +86,7 @@ public class ConsoleGameController implements GameController {
 
     private void hasLooser() {
         if (!gameField.hasAvailableMove()) {
-            printStream.println("YOU ARE LOOSE");
-            printStream.println("n - new game");
-            printStream.println("e - exit");
+            printLooserMenu();
 
             enteredChar = scanner.next().charAt(0);
             switch (enteredChar) {
@@ -109,5 +99,27 @@ public class ConsoleGameController implements GameController {
                     break;
             }
         }
+    }
+
+    private void printGameProcessHeader() {
+        printStream.println("n - new game");
+        printStream.println("8 - move up");
+        printStream.println("2 - move down");
+        printStream.println("4 - move left");
+        printStream.println("6 - move right");
+        printStream.println("e - exit");
+    }
+
+    private void printWinnerMenu() {
+        printStream.println("YOU ARE THE WINNER");
+        printStream.println("1 - keep going");
+        printStream.println("n - new game");
+        printStream.println("e - exit");
+    }
+
+    private void printLooserMenu() {
+        printStream.println("YOU ARE LOOSE");
+        printStream.println("n - new game");
+        printStream.println("e - exit");
     }
 }

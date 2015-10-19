@@ -40,9 +40,9 @@ public class GameField {
 
     public void fillEmptyCell() {
         if (hasEmptyCell()) {
-            EmptyCellSelector emptyCellSelector = new RandomEmptyCellSelector();
+            EmptyCellSelector emptyCellSelector = new RandomEmptyCellSelector(cells);
 
-            emptyCellSelector.getEmptyCell(cells).setCellValue(cellValueGenerator.generateCellValue());
+            emptyCellSelector.getEmptyCell().setCellValue(cellValueGenerator.generateCellValue());
         }
     }
 
@@ -60,22 +60,22 @@ public class GameField {
     }
 
 
-    public void move(Direction direction) {
-        MoveCells moveCells = new MoveCells();
+    public void moveCells(Direction direction) {
+        MoveCells moveCells = new MoveCells(cells);
         Boolean hasMove = false;
 
         switch (direction) {
             case UP:
-                hasMove = moveCells.moveUp(cells);
+                hasMove = moveCells.moveUp();
                 break;
             case DOWN:
-                hasMove = moveCells.moveDown(cells);
+                hasMove = moveCells.moveDown();
                 break;
             case LEFT:
-                hasMove = moveCells.moveLeft(cells);
+                hasMove = moveCells.moveLeft();
                 break;
             case RIGHT:
-                hasMove = moveCells.moveRight(cells);
+                hasMove = moveCells.moveRight();
                 break;
         }
 
@@ -84,7 +84,7 @@ public class GameField {
         }
     }
 
-    public boolean hasCellWith2048() {
+    public boolean hasCellWithValueRequiredForVictory() {
         for (int i = 0; i < FIELD_SIZE; i++) {
             for (int j = 0; j < FIELD_SIZE; j++) {
                 if (cells[i][j].getCellValue() == VALUE_REQUIRED_FOR_VICTORY){
@@ -96,7 +96,9 @@ public class GameField {
     }
 
     public boolean hasAvailableMove() {
-        if (!hasEmptyCell()) {
+        if (hasEmptyCell()) {
+            return true;
+        } else {
             for (int i = 0; i < FIELD_SIZE; i++) {
                 for (int j = 0; j < FIELD_SIZE; j++) {
                     if (i != FIELD_SIZE - 1){
@@ -112,8 +114,6 @@ public class GameField {
                     }
                 }
             }
-        } else {
-            return true;
         }
 
         return false;

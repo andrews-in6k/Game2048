@@ -8,7 +8,10 @@ public class Run {
     private static GameController gameController;
 
     public static void main(String[] args) {
-        gameController = new ConsoleGameController();
+        GameField gameField = new GameField(new RandomCellValueGenerator());
+
+        gameController = new ConsoleGameController(gameField);
+
         gameController.startController();
     }
 }

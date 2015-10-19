@@ -4,10 +4,11 @@ package game2048;
  * Created by employee on 10/16/15.
  */
 public class Cell {
+    public static final int BASIC_NUMBER = 2;
 
     private int cellValue;
 
-    public Cell(){
+    public Cell() {
         cellValue = 0;
     }
 
@@ -16,7 +17,7 @@ public class Cell {
     }
 
     public void incrementPower() {
-        cellValue = cellValue * 2;
+        cellValue = cellValue * BASIC_NUMBER;
     }
 
     public void setCellValue(int cellValue) {
@@ -32,7 +33,7 @@ public class Cell {
     }
 
     private String calculateCellColor() {
-        int index = (int)(Math.log(cellValue)/Math.log(2)) % 8;
+        int index = (int) (Math.log(cellValue) / Math.log(BASIC_NUMBER)) % 8;
         CellColor[] cellColors = CellColor.values();
 
         return cellColors[index].toString();

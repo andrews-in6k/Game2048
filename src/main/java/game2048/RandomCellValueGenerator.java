@@ -12,9 +12,9 @@ public class RandomCellValueGenerator implements CellValueGenerator {
         Random random = new Random();
         int randomResult = random.nextInt(10);
         if (randomResult < 8) {
-            return 2;
+            return Cell.BASIC_NUMBER;
         } else {
-            return 4;
+            return Cell.BASIC_NUMBER * Cell.BASIC_NUMBER;
         }
     }
 }

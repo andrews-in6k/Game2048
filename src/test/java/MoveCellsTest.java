@@ -15,16 +15,19 @@ public class MoveCellsTest {
 
     @Test
     public void testMoveCells() {
-        new MoveCells();
+        new MoveCells(cells);
     }
 
     @Test
     public void testMoveUp(){
-        MoveCells moveCells = new MoveCells();
+        MoveCells moveCells;
 
         //test empty
         generateEmptyCells();
-        moveCells.moveUp(cells);
+        moveCells = new MoveCells(cells);
+
+        assertThat(moveCells.moveUp(), is(false));
+
         assertThat(cellToString(), is(
                 "0 0 0 0 \n" +
                 "0 0 0 0 \n" +
@@ -34,7 +37,10 @@ public class MoveCellsTest {
 
         //case 1
         generateMoveUpCase1();
-        moveCells.moveUp(cells);
+        moveCells = new MoveCells(cells);
+
+        assertThat(moveCells.moveUp(), is(true));
+
         assertThat(cellToString(), is(
                 "2 2 2 2 \n" +
                 "0 0 0 0 \n" +
@@ -44,7 +50,10 @@ public class MoveCellsTest {
 
         //case 2
         generateMoveUpCase2();
-        moveCells.moveUp(cells);
+        moveCells = new MoveCells(cells);
+
+        assertThat(moveCells.moveUp(), is(true));
+
         assertThat(cellToString(), is(
                 "2 0 2 2 \n" +
                 "4 0 4 4 \n" +
@@ -54,7 +63,10 @@ public class MoveCellsTest {
 
         //case 3
         generateMoveUpCase3();
-        moveCells.moveUp(cells);
+        moveCells = new MoveCells(cells);
+
+        assertThat(moveCells.moveUp(), is(false));
+
         assertThat(cellToString(), is(
                 "2 4 0 0 \n" +
                 "4 0 0 0 \n" +
@@ -64,7 +76,10 @@ public class MoveCellsTest {
 
         //case 4
         generateMoveUpCase4();
-        moveCells.moveUp(cells);
+        moveCells = new MoveCells(cells);
+
+        assertThat(moveCells.moveUp(), is(true));
+
         assertThat(cellToString(), is(
                 "4 8 16 4 \n" +
                 "0 0 0 0 \n" +
@@ -74,7 +89,10 @@ public class MoveCellsTest {
 
         //case final
         generateFinalMoveCase();
-        moveCells.moveUp(cells);
+        moveCells = new MoveCells(cells);
+
+        assertThat(moveCells.moveUp(), is(true));
+
         assertThat(cellToString(), is(
                 "4 4 2 4 \n" +
                 "4 8 4 4 \n" +
@@ -85,10 +103,13 @@ public class MoveCellsTest {
 
     @Test
     public void testMoveDown() {
-        MoveCells moveCells = new MoveCells();
+        MoveCells moveCells;
 
         generateFinalMoveCase();
-        moveCells.moveDown(cells);
+        moveCells = new MoveCells(cells);
+
+        assertThat(moveCells.moveDown(), is(true));
+
         assertThat(cellToString(), is(
                 "0 0 2 0 \n" +
                 "0 0 4 0 \n" +
@@ -99,10 +120,13 @@ public class MoveCellsTest {
 
     @Test
     public void testMoveLeft() {
-        MoveCells moveCells = new MoveCells();
+        MoveCells moveCells;
 
         generateFinalMoveCase();
-        moveCells.moveLeft(cells);
+        moveCells = new MoveCells(cells);
+
+        assertThat(moveCells.moveLeft(), is(true));
+
         assertThat(cellToString(), is(
                 "4 4 0 0 \n" +
                 "4 4 2 0 \n" +
@@ -113,10 +137,13 @@ public class MoveCellsTest {
 
     @Test
     public void testMoveRight() {
-        MoveCells moveCells = new MoveCells();
+        MoveCells moveCells;
 
         generateFinalMoveCase();
-        moveCells.moveRight(cells);
+        moveCells = new MoveCells(cells);
+
+        assertThat(moveCells.moveRight(), is(true));
+
         assertThat(cellToString(), is(
                 "0 0 4 4 \n" +
                 "0 4 4 2 \n" +

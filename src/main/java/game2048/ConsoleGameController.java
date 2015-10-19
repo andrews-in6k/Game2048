@@ -7,18 +7,18 @@ import java.util.Scanner;
  * Created by anri on 18.10.15.
  */
 public class ConsoleGameController implements GameController{
-
-    private GameField gameField = new GameField(new RandomCellValueGenerator());
-
-    private GameFieldPrinter gameFieldPrinter;
+    private GameField gameField;
 
     private PrintStream printStream = new PrintStream(System.out);
-
     private Scanner scanner =  new Scanner(System.in);
 
     private boolean isExitPressed;
     private boolean winner;
     private char enteredChar;
+
+    public ConsoleGameController(GameField gameField) {
+        this.gameField = gameField;
+    }
 
     public void startController() {
         isExitPressed = false;
@@ -26,18 +26,18 @@ public class ConsoleGameController implements GameController{
 
         while (!isExitPressed) {
 
-            gameControl();
+            gameProcessControl();
 
             hasWinner();
 
             hasLooser();
 
-            gameFieldPrinter = new ANSIGameFieldPrinter(printStream);
+            GameFieldPrinter gameFieldPrinter = new ANSIGameFieldPrinter(printStream);
             gameFieldPrinter.printGameField(gameField);
         }
     }
 
-    private void gameControl() {
+    private void gameProcessControl() {
         printStream.println("n - new game");
         printStream.println("8 - move up");
         printStream.println("2 - move down");
@@ -51,16 +51,16 @@ public class ConsoleGameController implements GameController{
                 gameField.startNewGame();
                 break;
             case '8':
-                gameField.move(Direction.UP);
+                gameField.moveCells(Direction.UP);
                 break;
             case '2':
-                gameField.move(Direction.DOWN);
+                gameField.moveCells(Direction.DOWN);
                 break;
             case '4':
-                gameField.move(Direction.LEFT);
+                gameField.moveCells(Direction.LEFT);
                 break;
             case '6':
-                gameField.move(Direction.RIGHT);
+                gameField.moveCells(Direction.RIGHT);
                 break;
             case 'e':
                 isExitPressed = true;
@@ -70,7 +70,7 @@ public class ConsoleGameController implements GameController{
 
     protected void hasWinner() {
         if (!winner) {
-            if (gameField.hasCellWith2048()) {
+            if (gameField.hasCellWithValueRequiredForVictory()) {
                 printStream.println("YOU ARE THE WINNER");
                 printStream.println("1 - keep going");
                 printStream.println("n - new game");
@@ -101,6 +101,7 @@ public class ConsoleGameController implements GameController{
             enteredChar = scanner.next().charAt(0);
             switch (enteredChar) {
                 case 'n':
+                    winner = false;
                     gameField.startNewGame();
                     break;
                 case 'e':

@@ -11,10 +11,17 @@ public class RandomEmptyCellSelector implements EmptyCellSelector {
 
     private List<Cell> emptyCellList = new ArrayList<>();
 
-    public Cell getEmptyCell(Cell[][] cell) {
-        fillEmptyCellsList(cell);
+    Cell[][] cells;
+
+    public RandomEmptyCellSelector(Cell[][] cells) {
+        this.cells = cells;
+    }
+
+    public Cell getEmptyCell() {
+        fillEmptyCellsList();
 
         int randomResult = 0;
+
         if (!emptyCellList.isEmpty()) {
             Random random = new Random();
             randomResult = random.nextInt(emptyCellList.size());
@@ -23,11 +30,11 @@ public class RandomEmptyCellSelector implements EmptyCellSelector {
         return emptyCellList.get(randomResult);
     }
 
-    private void fillEmptyCellsList(Cell[][] cell) {
+    private void fillEmptyCellsList() {
         for (int i = 0; i < GameField.FIELD_SIZE; i++) {
             for (int j = 0; j < GameField.FIELD_SIZE; j++) {
-                if (cell[i][j].getCellValue() == 0) {
-                    emptyCellList.add(cell[i][j]);
+                if (cells[i][j].getCellValue() == 0) {
+                    emptyCellList.add(cells[i][j]);
                 }
             }
         }

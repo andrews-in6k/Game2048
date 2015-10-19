@@ -29,6 +29,17 @@ public class GameFieldTest {
     }
 
     @Test
+    public void testStartGame() {
+        GameField gameField = new GameField(new StaticCellValueGenerator(2));
+
+        gameField.startNewGame();
+
+        assertThat(GameField.getScore(), is(0));
+
+        assertThat(gameField.toString(), containsString("2"));
+    }
+
+    @Test
     public void testFillEmptyCell() {
         GameField gameField = new GameField(new StaticCellValueGenerator(4));
 
@@ -68,12 +79,12 @@ public class GameFieldTest {
     public void testHasCellWith2048() {
         GameField gameField = new GameField(new RandomCellValueGenerator());
 
-        assertThat(gameField.hasCellWith2048(), is(false));
+        assertThat(gameField.hasCellWithValueRequiredForVictory(), is(false));
 
         gameField = new GameField(new StaticCellValueGenerator(2048));
         gameField.fillEmptyCell();
 
-        assertThat(gameField.hasCellWith2048(), is(true));
+        assertThat(gameField.hasCellWithValueRequiredForVictory(), is(true));
     }
 
     @Test

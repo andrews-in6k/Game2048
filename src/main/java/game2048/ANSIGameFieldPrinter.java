@@ -20,18 +20,22 @@ public class ANSIGameFieldPrinter implements GameFieldPrinter{
         for (int i = 0; i < GameField.FIELD_SIZE; i++) {
             printStream.print("|");
 
-            for (int j = 0; j < GameField.FIELD_SIZE; j++) {
-                if (gameField.getCells()[i][j].getCellValue() == 0){
-                    printStream.print("      |");
-                } else {
-                    printStream.printf("%s%6d%s|", gameField.getCells()[i][j].getCellColor(),
-                            gameField.getCells()[i][j].getCellValue(),
-                            CellColor.DEFAULT);
-                }
-            }
+            printCells(gameField, i);
 
             printStream.println();
             printStream.println("-----------------------------");
+        }
+    }
+
+    private void printCells(GameField gameField, int i) {
+        for (int j = 0; j < GameField.FIELD_SIZE; j++) {
+            if (gameField.getCells()[i][j].getCellValue() == 0){
+                printStream.print("      |");
+            } else {
+                printStream.printf("%s%6d%s|", gameField.getCells()[i][j].getCellColor(),
+                        gameField.getCells()[i][j].getCellValue(),
+                        CellColor.DEFAULT);
+            }
         }
     }
 }

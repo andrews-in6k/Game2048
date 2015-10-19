@@ -105,6 +105,18 @@ public class MoveCellsTest {
     public void testMoveDown() {
         MoveCells moveCells;
 
+        generateEmptyCells();
+        moveCells = new MoveCells(cells);
+
+        assertThat(moveCells.moveDown(), is(false));
+
+        assertThat(cellToString(), is(
+                "0 0 0 0 \n" +
+                        "0 0 0 0 \n" +
+                        "0 0 0 0 \n" +
+                        "0 0 0 0 \n"
+        ));
+
         generateFinalMoveCase();
         moveCells = new MoveCells(cells);
 
@@ -122,6 +134,18 @@ public class MoveCellsTest {
     public void testMoveLeft() {
         MoveCells moveCells;
 
+        generateEmptyCells();
+        moveCells = new MoveCells(cells);
+
+        assertThat(moveCells.moveLeft(), is(false));
+
+        assertThat(cellToString(), is(
+                "0 0 0 0 \n" +
+                        "0 0 0 0 \n" +
+                        "0 0 0 0 \n" +
+                        "0 0 0 0 \n"
+        ));
+
         generateFinalMoveCase();
         moveCells = new MoveCells(cells);
 
@@ -138,6 +162,18 @@ public class MoveCellsTest {
     @Test
     public void testMoveRight() {
         MoveCells moveCells;
+
+        generateEmptyCells();
+        moveCells = new MoveCells(cells);
+
+        assertThat(moveCells.moveRight(), is(false));
+
+        assertThat(cellToString(), is(
+                "0 0 0 0 \n" +
+                        "0 0 0 0 \n" +
+                        "0 0 0 0 \n" +
+                        "0 0 0 0 \n"
+        ));
 
         generateFinalMoveCase();
         moveCells = new MoveCells(cells);

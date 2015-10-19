@@ -16,6 +16,14 @@ public class Cell {
         setCellValue(cellValue);
     }
 
+    public boolean isEmpty() {
+        if (cellValue == 0) {
+            return true;
+        }
+
+        return false;
+    }
+
     public void incrementPower() {
         cellValue = cellValue * BASIC_NUMBER;
     }

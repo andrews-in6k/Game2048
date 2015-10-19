@@ -50,7 +50,7 @@ public class GameField {
     public boolean hasEmptyCell() {
         for (int i = 0; i < FIELD_SIZE; i++) {
             for (int j = 0; j < FIELD_SIZE; j++) {
-                if (cells[i][j].getCellValue() == 0){
+                if (cells[i][j].isEmpty()){
                     return true;
                 }
             }

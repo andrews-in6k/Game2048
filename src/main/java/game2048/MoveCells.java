@@ -57,14 +57,14 @@ public class MoveCells {
 
     private void upCellsAddition() {
         for (row = 0; row < GameField.FIELD_SIZE - 1; row++) {
-            if (cells[row][col].getCellValue() != 0) {
+            if (!cells[row][col].isEmpty()) {
                 tempIndex = row + 1;
 
                 while (tempIndex < GameField.FIELD_SIZE) {
                     if (cells[row][col].getCellValue() == cells[tempIndex][col].getCellValue()) {
                         verticalCellsAddition();
                         break;
-                    } else if (cells[tempIndex][col].getCellValue() != 0) {
+                    } else if (!cells[tempIndex][col].isEmpty()) {
                         break;
                     }
                     tempIndex++;
@@ -75,8 +75,8 @@ public class MoveCells {
 
     private void upCellsShift() {
         for (row = 1; row < GameField.FIELD_SIZE; row++) {
-            if (cells[row][col].getCellValue() != 0) {
-                while ((row != 0) && (cells[row - 1][col].getCellValue() == 0)) {
+            if (!cells[row][col].isEmpty()) {
+                while ((row != 0) && (cells[row - 1][col].isEmpty())) {
                     cells[row - 1][col].setCellValue(cells[row][col].getCellValue());
                     cells[row][col].setCellValue(0);
 
@@ -89,14 +89,14 @@ public class MoveCells {
 
     private void downCellsAddition() {
         for (row = GameField.FIELD_SIZE - 1; row > 0; row--) {
-            if (cells[row][col].getCellValue() != 0) {
+            if (!cells[row][col].isEmpty()) {
                 tempIndex = row - 1;
 
                 while (tempIndex >= 0) {
                     if (cells[row][col].getCellValue() == cells[tempIndex][col].getCellValue()) {
                         verticalCellsAddition();
                         break;
-                    } else if (cells[tempIndex][col].getCellValue() != 0) {
+                    } else if (!cells[tempIndex][col].isEmpty()) {
                         break;
                     }
                     tempIndex--;
@@ -107,8 +107,8 @@ public class MoveCells {
 
     private void downCellsShift() {
         for (row = GameField.FIELD_SIZE - 2; row >= 0; row--) {
-            if (cells[row][col].getCellValue() != 0) {
-                while ((row != GameField.FIELD_SIZE - 1) && (cells[row + 1][col].getCellValue() == 0)) {
+            if (!cells[row][col].isEmpty()) {
+                while ((row != GameField.FIELD_SIZE - 1) && (cells[row + 1][col].isEmpty())) {
                     cells[row + 1][col].setCellValue(cells[row][col].getCellValue());
                     cells[row][col].setCellValue(0);
 
@@ -129,14 +129,14 @@ public class MoveCells {
 
     private void leftCellsAddition() {
         for (col = 0; col < GameField.FIELD_SIZE - 1; col++) {
-            if (cells[row][col].getCellValue() != 0) {
+            if (!cells[row][col].isEmpty()) {
                 tempIndex = col + 1;
 
                 while (tempIndex < GameField.FIELD_SIZE) {
                     if (cells[row][col].getCellValue() == cells[row][tempIndex].getCellValue()) {
                         horizontalCellsAddition();
                         break;
-                    } else if (cells[row][tempIndex].getCellValue() != 0) {
+                    } else if (!cells[row][tempIndex].isEmpty()) {
                         break;
                     }
                     tempIndex++;
@@ -147,8 +147,8 @@ public class MoveCells {
 
     private void leftCellsShift() {
         for (col = 1; col < GameField.FIELD_SIZE; col++) {
-            if (cells[row][col].getCellValue() != 0) {
-                while ((col != 0) && (cells[row][col - 1].getCellValue() == 0)) {
+            if (!cells[row][col].isEmpty()) {
+                while ((col != 0) && (cells[row][col - 1].isEmpty())) {
                     cells[row][col - 1].setCellValue(cells[row][col].getCellValue());
                     cells[row][col].setCellValue(0);
 
@@ -161,14 +161,14 @@ public class MoveCells {
 
     private void rightCellsAddition() {
         for (col = GameField.FIELD_SIZE - 1; col > 0; col--) {
-            if (cells[row][col].getCellValue() != 0) {
+            if (!cells[row][col].isEmpty()) {
                 tempIndex = col - 1;
 
                 while (tempIndex >= 0) {
                     if (cells[row][col].getCellValue() == cells[row][tempIndex].getCellValue()) {
                         horizontalCellsAddition();
                         break;
-                    } else if (cells[row][tempIndex].getCellValue() != 0) {
+                    } else if (!cells[row][tempIndex].isEmpty()) {
                         break;
                     }
                     tempIndex--;
@@ -179,8 +179,8 @@ public class MoveCells {
 
     private void rightCellsShift() {
         for (col = GameField.FIELD_SIZE - 2; col >= 0; col--) {
-            if (cells[row][col].getCellValue() != 0) {
-                while ((col != GameField.FIELD_SIZE - 1) && (cells[row][col + 1].getCellValue() == 0)) {
+            if (!cells[row][col].isEmpty()) {
+                while ((col != GameField.FIELD_SIZE - 1) && (cells[row][col + 1].isEmpty())) {
                     cells[row][col + 1].setCellValue(cells[row][col].getCellValue());
                     cells[row][col].setCellValue(0);
 

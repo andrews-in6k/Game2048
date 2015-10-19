@@ -15,6 +15,17 @@ public class CellTest {
     }
 
     @Test
+    public void testIsEmpty() {
+        Cell cell = new Cell();
+
+        assertThat(cell.isEmpty(), is(true));
+
+        cell.setCellValue(2);
+
+        assertThat(cell.isEmpty(), is(false));
+    }
+
+    @Test
     public void testGetCellValue() {
         Cell cell = new Cell();
 

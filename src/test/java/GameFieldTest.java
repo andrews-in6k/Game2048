@@ -76,12 +76,11 @@ public class GameFieldTest {
     }
 
     @Test
-    public void testHasCellWith2048() {
-        GameField gameField = new GameField(new RandomCellValueGenerator());
+    public void testHasCellWithValueRequiredForVictory() {
+        GameField gameField = new GameField(new StaticCellValueGenerator(GameField.VALUE_REQUIRED_FOR_VICTORY));
 
         assertThat(gameField.hasCellWithValueRequiredForVictory(), is(false));
 
-        gameField = new GameField(new StaticCellValueGenerator(2048));
         gameField.fillEmptyCell();
 
         assertThat(gameField.hasCellWithValueRequiredForVictory(), is(true));
@@ -93,7 +92,7 @@ public class GameFieldTest {
 
         assertThat(gameField.hasAvailableMove(), is(true));
 
-        for (int i = 0; i < (gameField.FIELD_SIZE * gameField.FIELD_SIZE); i++) {
+        for (int i = 0; i < (GameField.FIELD_SIZE * GameField.FIELD_SIZE); i++) {
             gameField.fillEmptyCell();
         }
 
@@ -101,7 +100,7 @@ public class GameFieldTest {
 
         gameField = new GameField(new ProgressiveCellValueGenerator());
 
-        for (int i = 0; i < (gameField.FIELD_SIZE * gameField.FIELD_SIZE); i++) {
+        for (int i = 0; i < (GameField.FIELD_SIZE * GameField.FIELD_SIZE); i++) {
             gameField.fillEmptyCell();
         }
 

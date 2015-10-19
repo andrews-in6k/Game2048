@@ -29,7 +29,7 @@ public class ANSIGameFieldPrinter implements GameFieldPrinter{
 
     private void printCells(GameField gameField, int i) {
         for (int j = 0; j < GameField.FIELD_SIZE; j++) {
-            if (gameField.getCells()[i][j].getCellValue() == 0){
+            if (gameField.getCells()[i][j].isEmpty()){
                 printStream.print("      |");
             } else {
                 printStream.printf("%s%6d%s|", gameField.getCells()[i][j].getCellColor(),

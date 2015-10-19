@@ -33,7 +33,7 @@ public class RandomEmptyCellSelector implements EmptyCellSelector {
     private void fillEmptyCellsList() {
         for (int i = 0; i < GameField.FIELD_SIZE; i++) {
             for (int j = 0; j < GameField.FIELD_SIZE; j++) {
-                if (cells[i][j].getCellValue() == 0) {
+                if (cells[i][j].isEmpty()) {
                     emptyCellList.add(cells[i][j]);
                 }
             }

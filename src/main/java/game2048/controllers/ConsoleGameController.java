@@ -68,7 +68,7 @@ public class ConsoleGameController implements GameController {
         }
     }
 
-    protected void hasWinner() {
+    private void hasWinner() {
         if (!winner) {
             if (gameField.hasCellWithValueRequiredForVictory()) {
                 printWinnerMenu();

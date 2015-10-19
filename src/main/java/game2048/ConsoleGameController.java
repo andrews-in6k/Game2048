@@ -6,7 +6,7 @@ import java.util.Scanner;
 /**
  * Created by anri on 18.10.15.
  */
-public class ConsoleGameController implements GameController{
+public class ConsoleGameController implements GameController {
     private GameField gameField;
 
     private PrintStream printStream = new PrintStream(System.out);

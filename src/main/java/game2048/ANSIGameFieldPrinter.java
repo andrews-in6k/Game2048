@@ -5,7 +5,7 @@ import java.io.PrintStream;
 /**
  * Created by anri on 18.10.15.
  */
-public class ANSIGameFieldPrinter implements GameFieldPrinter{
+public class ANSIGameFieldPrinter implements GameFieldPrinter {
 
     private PrintStream printStream;
 

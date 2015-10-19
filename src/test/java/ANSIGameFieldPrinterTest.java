@@ -1,4 +1,7 @@
 import game2048.*;
+import game2048.CellColor;
+import game2048.RandomCellValueGenerator;
+import game2048.ANSIGameFieldPrinter;
 import org.junit.Test;
 
 import java.io.ByteArrayOutputStream;

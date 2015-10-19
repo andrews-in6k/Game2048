@@ -1,8 +1,6 @@
-package gameFieldHandling;
+package game2048.gameFieldHandling;
 
 import game2048.cellHandling.Cell;
-import game2048.gameFieldHandling.GameField;
-import game2048.gameFieldHandling.MoveCells;
 import org.junit.Test;
 
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -14,6 +12,7 @@ import static org.hamcrest.core.Is.is;
 public class MoveCellsTest {
 
     Cell[][] cells = new Cell[GameField.FIELD_SIZE][GameField.FIELD_SIZE];
+    private MoveCells moveCells;
 
     @Test
     public void testMoveCells() {
@@ -22,7 +21,6 @@ public class MoveCellsTest {
 
     @Test
     public void testMoveUp(){
-        MoveCells moveCells;
 
         //test empty
         generateEmptyCells();
@@ -105,7 +103,6 @@ public class MoveCellsTest {
 
     @Test
     public void testMoveDown() {
-        MoveCells moveCells;
 
         generateEmptyCells();
         moveCells = new MoveCells(cells);
@@ -134,7 +131,6 @@ public class MoveCellsTest {
 
     @Test
     public void testMoveLeft() {
-        MoveCells moveCells;
 
         generateEmptyCells();
         moveCells = new MoveCells(cells);
@@ -163,7 +159,6 @@ public class MoveCellsTest {
 
     @Test
     public void testMoveRight() {
-        MoveCells moveCells;
 
         generateEmptyCells();
         moveCells = new MoveCells(cells);

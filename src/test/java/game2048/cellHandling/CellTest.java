@@ -1,6 +1,5 @@
-package cellHandling;
+package game2048.cellHandling;
 
-import game2048.cellHandling.Cell;
 import org.junit.Test;
 
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -11,6 +10,8 @@ import static org.hamcrest.core.Is.is;
  */
 public class CellTest {
 
+    Cell cell;
+
     @Test
     public void testCreateCell() {
         new Cell();
@@ -18,7 +19,7 @@ public class CellTest {
 
     @Test
     public void testIsEmpty() {
-        Cell cell = new Cell();
+        cell = new Cell();
 
         assertThat(cell.isEmpty(), is(true));
 
@@ -29,7 +30,7 @@ public class CellTest {
 
     @Test
     public void testGetCellValue() {
-        Cell cell = new Cell();
+        cell = new Cell();
 
         assertThat(cell.getCellValue(), is(0));
 
@@ -40,7 +41,7 @@ public class CellTest {
 
     @Test
     public void testSetCellValue(){
-        Cell cell = new Cell();
+        cell = new Cell();
 
         cell.setCellValue(4);
 
@@ -49,7 +50,7 @@ public class CellTest {
 
     @Test
     public void testIncrementPower() {
-        Cell cell = new Cell();
+        cell = new Cell();
 
         cell.incrementPower();
 

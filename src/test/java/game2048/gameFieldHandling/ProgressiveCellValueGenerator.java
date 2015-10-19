@@ -1,6 +1,4 @@
-package gameFieldHandling;
-
-import game2048.gameFieldHandling.CellValueGenerator;
+package game2048.gameFieldHandling;
 
 /**
  * Created by anri on 18.10.15.

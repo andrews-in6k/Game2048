@@ -1,4 +1,4 @@
-package gameFieldHandling;
+package game2048.gameFieldHandling;
 
 import game2048.controllers.Direction;
 import org.junit.Test;

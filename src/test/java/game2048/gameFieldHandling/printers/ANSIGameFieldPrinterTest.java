@@ -1,11 +1,9 @@
-package gameFieldHandling.printers;
+package game2048.gameFieldHandling.printers;
 
 import game2048.cellHandling.CellColor;
 import game2048.gameFieldHandling.GameField;
 import game2048.gameFieldHandling.GameFieldPrinter;
-import game2048.gameFieldHandling.RandomCellValueGenerator;
-import game2048.gameFieldHandling.printers.ANSIGameFieldPrinter;
-import gameFieldHandling.StaticCellValueGenerator;
+import game2048.gameFieldHandling.StaticCellValueGenerator;
 import org.junit.Test;
 
 import java.io.ByteArrayOutputStream;

@@ -17,6 +17,12 @@ public class GameField {
 
     CellValueGenerator cellValueGenerator;
 
+    public GameField() {
+        initEmptyCells();
+
+        cellValueGenerator = new RandomCellValueGenerator();
+    }
+
     public GameField(CellValueGenerator cellValueGenerator) {
         initEmptyCells();
 

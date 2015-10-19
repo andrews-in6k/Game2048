@@ -12,7 +12,7 @@ public class Run {
     private static GameController gameController;
 
     public static void main(String[] args) {
-        GameField gameField = new GameField(new RandomCellValueGenerator());
+        GameField gameField = new GameField();
 
         gameController = new ConsoleGameController(gameField);
 

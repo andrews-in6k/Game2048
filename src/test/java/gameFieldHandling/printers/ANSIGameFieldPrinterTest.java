@@ -31,7 +31,7 @@ public class ANSIGameFieldPrinterTest {
 
         GameFieldPrinter gameFieldPrinter = new ANSIGameFieldPrinter(printStream);
 
-        GameField gameField = new GameField(new RandomCellValueGenerator());
+        GameField gameField = new GameField();
 
         gameFieldPrinter.printGameField(gameField);
 

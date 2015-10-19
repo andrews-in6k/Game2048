@@ -15,12 +15,12 @@ public class GameFieldTest {
 
     @Test
     public void testCreateGameField() {
-        new GameField(new RandomCellValueGenerator());
+        new GameField();
     }
 
     @Test
     public void testGameFieldToString() {
-        GameField gameField = new GameField(new RandomCellValueGenerator());
+        GameField gameField = new GameField();
 
         assertThat(gameField.toString(), is(
                 "0 0 0 0 \n" +
@@ -66,7 +66,7 @@ public class GameFieldTest {
 
     @Test
     public void testHasEmptyCell() {
-        GameField gameField = new GameField(new RandomCellValueGenerator());
+        GameField gameField = new GameField();
 
         assertThat(gameField.hasEmptyCell(), is(true));
 

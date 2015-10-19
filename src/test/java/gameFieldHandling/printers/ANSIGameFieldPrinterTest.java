@@ -53,7 +53,7 @@ public class ANSIGameFieldPrinterTest {
 
         gameFieldPrinter = new ANSIGameFieldPrinter(printStream);
 
-        gameField = new GameField(new StaticCellValueGenerator(2));
+        gameField = new GameField(new StaticCellValueGenerator(4));
 
         for (int i = 0; i < GameField.FIELD_SIZE * GameField.FIELD_SIZE; i++) {
             gameField.fillEmptyCell();
@@ -64,25 +64,25 @@ public class ANSIGameFieldPrinterTest {
         assertThat(baos.toString(), is(
                 "Score: 0\n" +
                 "-----------------------------\n" +
-                "|" + CellColor.DEFAULT + "     2" + CellColor.DEFAULT +
-                "|" + CellColor.DEFAULT + "     2" + CellColor.DEFAULT +
-                "|" + CellColor.DEFAULT + "     2" + CellColor.DEFAULT +
-                "|" + CellColor.DEFAULT + "     2" + CellColor.DEFAULT + "|\n" +
+                "|" + CellColor.RED + "     4" + CellColor.DEFAULT +
+                "|" + CellColor.RED + "     4" + CellColor.DEFAULT +
+                "|" + CellColor.RED + "     4" + CellColor.DEFAULT +
+                "|" + CellColor.RED + "     4" + CellColor.DEFAULT + "|\n" +
                 "-----------------------------\n" +
-                "|" + CellColor.DEFAULT + "     2" + CellColor.DEFAULT +
-                "|" + CellColor.DEFAULT + "     2" + CellColor.DEFAULT +
-                "|" + CellColor.DEFAULT + "     2" + CellColor.DEFAULT +
-                "|" + CellColor.DEFAULT + "     2" + CellColor.DEFAULT + "|\n" +
+                "|" + CellColor.RED + "     4" + CellColor.DEFAULT +
+                "|" + CellColor.RED + "     4" + CellColor.DEFAULT +
+                "|" + CellColor.RED + "     4" + CellColor.DEFAULT +
+                "|" + CellColor.RED + "     4" + CellColor.DEFAULT + "|\n" +
                 "-----------------------------\n" +
-                "|" + CellColor.DEFAULT + "     2" + CellColor.DEFAULT +
-                "|" + CellColor.DEFAULT + "     2" + CellColor.DEFAULT +
-                "|" + CellColor.DEFAULT + "     2" + CellColor.DEFAULT +
-                "|" + CellColor.DEFAULT + "     2" + CellColor.DEFAULT + "|\n" +
+                "|" + CellColor.RED + "     4" + CellColor.DEFAULT +
+                "|" + CellColor.RED + "     4" + CellColor.DEFAULT +
+                "|" + CellColor.RED + "     4" + CellColor.DEFAULT +
+                "|" + CellColor.RED + "     4" + CellColor.DEFAULT + "|\n" +
                 "-----------------------------\n" +
-                "|" + CellColor.DEFAULT + "     2" + CellColor.DEFAULT +
-                "|" + CellColor.DEFAULT + "     2" + CellColor.DEFAULT +
-                "|" + CellColor.DEFAULT + "     2" + CellColor.DEFAULT +
-                "|" + CellColor.DEFAULT + "     2" + CellColor.DEFAULT + "|\n" +
+                "|" + CellColor.RED + "     4" + CellColor.DEFAULT +
+                "|" + CellColor.RED + "     4" + CellColor.DEFAULT +
+                "|" + CellColor.RED + "     4" + CellColor.DEFAULT +
+                "|" + CellColor.RED + "     4" + CellColor.DEFAULT + "|\n" +
                 "-----------------------------\n"
         ));
     }

@@ -19,7 +19,6 @@ public class ConsoleGameController implements GameController {
 
     private boolean isExitPressed;
     private boolean winner;
-    private char enteredChar;
     private GameFieldPrinter gameFieldPrinter;
 
     public ConsoleGameController(GameField gameField) {
@@ -33,20 +32,27 @@ public class ConsoleGameController implements GameController {
 
         while (!isExitPressed) {
 
-            gameProcessControl();
 
-            hasWinner();
+            printGameProcessHeader();
+            gameProcessControl(scanner.next().charAt(0));
 
-            hasLooser();
+            if (!winner) {
+                if (gameField.hasCellWithValueRequiredForVictory()) {
+                    printWinnerMenu();
+                    hasWinner(scanner.next().charAt(0));
+                }
+            }
+
+            if (!gameField.hasAvailableMove()) {
+                printLooserMenu();
+                hasLooser(scanner.next().charAt(0));
+            }
 
             gameFieldPrinter.printGameField(gameField);
         }
     }
 
-    private void gameProcessControl() {
-        printGameProcessHeader();
-
-        enteredChar = scanner.next().charAt(0);
+    protected void gameProcessControl(char enteredChar) {
         switch (enteredChar) {
             case 'n':
                 gameField.startNewGame();
@@ -69,45 +75,33 @@ public class ConsoleGameController implements GameController {
         }
     }
 
-    private void hasWinner() {
-        if (!winner) {
-            if (gameField.hasCellWithValueRequiredForVictory()) {
-                printWinnerMenu();
-
-                enteredChar = scanner.next().charAt(0);
-                switch (enteredChar) {
-                    case '1':
-                        winner = true;
-                        break;
-                    case 'n':
-                        gameField.startNewGame();
-                        break;
-                    case 'e':
-                        isExitPressed = true;
-                        break;
-                    default:
-                        isExitPressed = true;
-                }
-            }
+    protected void hasWinner(char enteredChar) {
+        switch (enteredChar) {
+            case '1':
+                winner = true;
+                break;
+            case 'n':
+                gameField.startNewGame();
+                break;
+            case 'e':
+                isExitPressed = true;
+                break;
+            default:
+                isExitPressed = true;
         }
     }
 
-    private void hasLooser() {
-        if (!gameField.hasAvailableMove()) {
-            printLooserMenu();
-
-            enteredChar = scanner.next().charAt(0);
-            switch (enteredChar) {
-                case 'n':
-                    winner = false;
-                    gameField.startNewGame();
-                    break;
-                case 'e':
-                    isExitPressed = true;
-                    break;
-                default:
-                    isExitPressed = true;
-            }
+    protected void hasLooser(char enteredChar) {
+        switch (enteredChar) {
+            case 'n':
+                winner = false;
+                gameField.startNewGame();
+                break;
+            case 'e':
+                isExitPressed = true;
+                break;
+            default:
+                isExitPressed = true;
         }
     }
 

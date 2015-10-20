@@ -96,21 +96,21 @@ public class GameField {
 
 
     public void moveCells(Direction direction) {
-        MoveCells moveCells = new MoveCells(this);
+        CellsMover cellsMover = new CellsMover(this);
         Boolean hasMove = false;
 
         switch (direction) {
             case UP:
-                hasMove = moveCells.moveUp();
+                hasMove = cellsMover.moveUp();
                 break;
             case DOWN:
-                hasMove = moveCells.moveDown();
+                hasMove = cellsMover.moveDown();
                 break;
             case LEFT:
-                hasMove = moveCells.moveLeft();
+                hasMove = cellsMover.moveLeft();
                 break;
             case RIGHT:
-                hasMove = moveCells.moveRight();
+                hasMove = cellsMover.moveRight();
                 break;
         }
 

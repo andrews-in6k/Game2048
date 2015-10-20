@@ -5,7 +5,7 @@ import game2048.cellHandling.Cell;
 /**
  * Created by employee on 10/16/15.
  */
-public class MoveCells {
+public class CellsMover {
 
     private boolean hasMove;
 
@@ -17,7 +17,7 @@ public class MoveCells {
     private int col;
     private int tempIndex;
 
-    public MoveCells(GameField gameField) {
+    public CellsMover(GameField gameField) {
         this.gameField = gameField;
         this.cells = gameField.getCells();
 

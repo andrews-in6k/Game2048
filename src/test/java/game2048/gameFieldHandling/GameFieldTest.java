@@ -15,7 +15,7 @@ public class GameFieldTest {
     GameField gameField;
 
     private void fillGameField() {
-        for (int i = 0; i < (GameField.FIELD_SIZE * GameField.FIELD_SIZE); i++) {
+        for (int i = 0; i < (GameField.FIELD_SQUARE); i++) {
             gameField.fillEmptyCell();
         }
     }
@@ -43,7 +43,7 @@ public class GameFieldTest {
 
         gameField.startNewGame();
 
-        assertThat(GameField.getScore(), is(0));
+        assertThat(gameField.getScore(), is(0));
 
         assertThat(gameField.toString(), is(
                 "2 2 0 0 \n" +
@@ -80,7 +80,7 @@ public class GameFieldTest {
 
     @Test
     public void testHasEmptyCellWithFieldCells() {
-        for (int i = 0; i < (GameField.FIELD_SIZE * GameField.FIELD_SIZE) - 1; i++) {
+        for (int i = 0; i < (GameField.FIELD_SQUARE) - 1; i++) {
             gameField.fillEmptyCell();
         }
 

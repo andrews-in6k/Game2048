@@ -11,10 +11,11 @@ import java.util.List;
  */
 public class GameField {
     public static final int FIELD_SIZE = 4;
+    public static final int FIELD_SQUARE = FIELD_SIZE * FIELD_SIZE;
     public static final int NEW_GAME_NUMBERS_COUNT = 2;
     public static final int VALUE_REQUIRED_FOR_VICTORY = 2048;
 
-    private static int score = 0;
+    private int score = 0;
 
     private Cell[][] cells = new Cell[FIELD_SIZE][FIELD_SIZE];
 
@@ -95,7 +96,7 @@ public class GameField {
 
 
     public void moveCells(Direction direction) {
-        MoveCells moveCells = new MoveCells(cells);
+        MoveCells moveCells = new MoveCells(this);
         Boolean hasMove = false;
 
         switch (direction) {
@@ -153,11 +154,11 @@ public class GameField {
         return false;
     }
 
-    public static void incrementScore(int value) {
-        GameField.score += value;
+    public void incrementScore(int value) {
+        score += value;
     }
 
-    public static int getScore() {
+    public int getScore() {
         return score;
     }
 

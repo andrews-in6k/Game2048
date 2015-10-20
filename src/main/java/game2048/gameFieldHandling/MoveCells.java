@@ -9,14 +9,17 @@ public class MoveCells {
 
     private boolean hasMove;
 
+    private GameField gameField;
+
     private Cell[][] cells;
 
     private int row;
     private int col;
     private int tempIndex;
 
-    public MoveCells(Cell[][] cells) {
-        this.cells = cells;
+    public MoveCells(GameField gameField) {
+        this.gameField = gameField;
+        this.cells = gameField.getCells();
 
         hasMove = false;
     }
@@ -123,7 +126,7 @@ public class MoveCells {
 
     private void verticalCellsAddition() {
         cells[row][col].incrementPower();
-        GameField.incrementScore(cells[row][col].getCellValue());
+        gameField.incrementScore(cells[row][col].getCellValue());
         cells[tempIndex][col].setCellValue(0);
 
         hasMove = true;
@@ -195,7 +198,7 @@ public class MoveCells {
 
     private void horizontalCellsAddition() {
         cells[row][col].incrementPower();
-        GameField.incrementScore(cells[row][col].getCellValue());
+        gameField.incrementScore(cells[row][col].getCellValue());
         cells[row][tempIndex].setCellValue(0);
 
         hasMove = true;

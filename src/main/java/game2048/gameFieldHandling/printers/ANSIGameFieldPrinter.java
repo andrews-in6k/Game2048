@@ -18,7 +18,7 @@ public class ANSIGameFieldPrinter implements GameFieldPrinter {
     }
 
     public void printGameField(GameField gameField) {
-        printStream.println("Score: " + GameField.getScore());
+        printStream.println("Score: " + gameField.getScore());
         printStream.println("-----------------------------");
 
         for (int i = 0; i < GameField.FIELD_SIZE; i++) {

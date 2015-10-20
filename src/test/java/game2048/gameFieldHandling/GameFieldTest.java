@@ -149,119 +149,261 @@ public class GameFieldTest {
     }
 
     //CellsMover
-//    @Test
-//    public void testMoveUpEmptyField() {
-//        int[][] tempCellArray = {
-//                {0, 0, 0, 0},
-//                {0, 0, 0, 0},
-//                {0, 0, 0, 0},
-//                {0, 0, 0, 0}
-//        };
-//
-//        getFieldFromIntArray(tempCellArray);
-//
-//        gameField.moveCells(Direction.UP);
-//
-//        assertThat(gameField.hasMove(), is(false));
-//
-//        assertThat(gameField.toString(), is(
-//                "0 0 0 0 \n" +
-//                "0 0 0 0 \n" +
-//                "0 0 0 0 \n" +
-//                "0 0 0 0 \n"
-//        ));
-//    }
-//
-//    @Test
-//    public void testMoveUpNormalCase() {
-//        int[][] tempCellArray = {
-//                {2, 4, 0, 16},
-//                {2, 0, 8, 0},
-//                {0, 4, 8, 0},
-//                {0, 0, 0, 16}
-//        };
-//
-//        getFieldFromIntArray(tempCellArray);
-//
-//        gameField.moveCells(Direction.UP);
-//
-//        assertThat(gameField.hasMove(), is(true));
-//
-//        assertThat(gameField.toString(), is(
-//                "4 8 16 32 \n" +
-//                "0 0 0 0 \n" +
-//                "0 0 0 0 \n" +
-//                "0 0 0 0 \n"
-//        ));
-//    }
-//
-//    @Test
-//    public void testMoveUpNextCellWithSameValueCase() {
-//        int[][] tempCellArray = {
-//                {4, 2, 2, 4},
-//                {2, 2, 0, 0},
-//                {2, 4, 2, 2},
-//                {0, 0, 4, 2}
-//        };
-//
-//        getFieldFromIntArray(tempCellArray);
-//
-//        gameField.moveCells(Direction.UP);
-//
-//        assertThat(gameField.hasMove(), is(true));
-//
-//        assertThat(gameField.toString(), is(
-//                "4 4 4 4 \n" +
-//                "4 4 4 4 \n" +
-//                "0 0 0 0 \n" +
-//                "0 0 0 0 \n"
-//        ));
-//    }
-//
-//    @Test
-//    public void testMoveUpFourSameCellsInLineCase() {
-//        int[][] tempCellArray = {
-//                {2, 2, 4, 4},
-//                {2, 4, 2, 2},
-//                {2, 2, 0, 2},
-//                {2, 4, 2, 2}
-//        };
-//
-//        getFieldFromIntArray(tempCellArray);
-//
-//        gameField.moveCells(Direction.UP);
-//
-//        assertThat(gameField.hasMove(), is(true));
-//
-//        assertThat(gameField.toString(), is(
-//                "4 2 4 4 \n" +
-//                "4 4 4 4 \n" +
-//                "0 2 0 2 \n" +
-//                "0 4 0 0 \n"
-//        ));
-//    }
-//
-//    @Test
-//    public void testMoveUpWithoutAvailableMove() {
-//        int[][] tempCellArray = {
-//                {2, 2, 4, 4},
-//                {0, 0, 0, 0},
-//                {0, 0, 0, 0},
-//                {0, 0, 0, 0}
-//        };
-//
-//        getFieldFromIntArray(tempCellArray);
-//
-//        gameField.moveCells(Direction.UP);
-//
-//        assertThat(gameField.hasMove(), is(false));
-//
-//        assertThat(gameField.toString(), is(
-//                "2 2 4 4 \n" +
-//                "0 0 0 0 \n" +
-//                "0 0 0 0 \n" +
-//                "0 0 0 0 \n"
-//        ));
-//    }
+    
+    //MoveUpTests
+    @Test
+    public void testMoveUpEmptyField() {
+        int[][] tempCellArray = {
+                {0, 0, 0, 0},
+                {0, 0, 0, 0},
+                {0, 0, 0, 0},
+                {0, 0, 0, 0}
+        };
 
+        getFieldFromIntArray(tempCellArray);
+
+        gameField.moveCells(Direction.UP);
+
+        assertThat(gameField.hasMove(), is(false));
+
+        assertThat(gameField.toString(), is(
+                "0 0 0 0 \n" +
+                "0 0 0 0 \n" +
+                "0 0 0 0 \n" +
+                "0 0 0 0 \n"
+        ));
+    }
+
+    @Test
+    public void testMoveUpNormalCase() {
+        int[][] tempCellArray = {
+                {2, 4, 0, 16},
+                {2, 0, 8, 0},
+                {0, 4, 8, 0},
+                {0, 0, 0, 16}
+        };
+
+        getFieldFromIntArray(tempCellArray);
+
+        gameField.moveCells(Direction.UP);
+
+        assertThat(gameField.hasMove(), is(true));
+
+        assertThat(gameField.toString(), is(
+                "4 8 16 32 \n" +
+                "0 0 0 0 \n" +
+                "0 0 0 0 \n" +
+                "0 0 0 0 \n"
+        ));
+    }
+
+    @Test
+    public void testMoveUpNextCellWithSameValueCase() {
+        int[][] tempCellArray = {
+                {4, 2, 2, 4},
+                {2, 2, 0, 0},
+                {2, 4, 2, 2},
+                {0, 0, 4, 2}
+        };
+
+        getFieldFromIntArray(tempCellArray);
+
+        gameField.moveCells(Direction.UP);
+
+        assertThat(gameField.hasMove(), is(true));
+
+        assertThat(gameField.toString(), is(
+                "4 4 4 4 \n" +
+                "4 4 4 4 \n" +
+                "0 0 0 0 \n" +
+                "0 0 0 0 \n"
+        ));
+    }
+
+    @Test
+    public void testMoveUpFourSameCellsInLineCase() {
+        int[][] tempCellArray = {
+                {2, 2, 4, 4},
+                {2, 4, 2, 2},
+                {2, 2, 0, 2},
+                {2, 4, 2, 2}
+        };
+
+        getFieldFromIntArray(tempCellArray);
+
+        gameField.moveCells(Direction.UP);
+
+        assertThat(gameField.hasMove(), is(true));
+
+        assertThat(gameField.toString(), is(
+                "4 2 4 4 \n" +
+                "4 4 4 4 \n" +
+                "0 2 0 2 \n" +
+                "0 4 0 0 \n"
+        ));
+    }
+
+    @Test
+    public void testMoveUpWithoutAvailableMove() {
+        int[][] tempCellArray = {
+                {2, 2, 4, 4},
+                {0, 0, 0, 0},
+                {0, 0, 0, 0},
+                {0, 0, 0, 0}
+        };
+
+        getFieldFromIntArray(tempCellArray);
+
+        gameField.moveCells(Direction.UP);
+
+        assertThat(gameField.hasMove(), is(false));
+
+        assertThat(gameField.toString(), is(
+                "2 2 4 4 \n" +
+                "0 0 0 0 \n" +
+                "0 0 0 0 \n" +
+                "0 0 0 0 \n"
+        ));
+    }
+    
+    //moveDownTests
+    @Test
+    public void testMoveDownWithoutAvailableMoves() {
+        int[][] tempCellArray = {
+                {0, 0, 0, 0},
+                {0, 0, 0, 0},
+                {0, 0, 0, 0},
+                {2, 4, 2, 2}
+        };
+
+        getFieldFromIntArray(tempCellArray);
+
+        gameField.moveCells(Direction.DOWN);
+
+        assertThat(gameField.hasMove(), is(false));
+
+        assertThat(gameField.toString(), is(
+                "0 0 0 0 \n" +
+                "0 0 0 0 \n" +
+                "0 0 0 0 \n" +
+                "2 4 2 2 \n"
+        ));
+    }
+
+    @Test
+    public void testMoveDownMultipurposeTest() {
+        int[][] tempCellArray = {
+                {0, 0, 2, 4},
+                {4, 2, 2, 2},
+                {2, 2, 2, 4},
+                {2, 4, 2, 2}
+        };
+
+        getFieldFromIntArray(tempCellArray);
+
+        gameField.moveCells(Direction.DOWN);
+
+        assertThat(gameField.hasMove(), is(true));
+
+        assertThat(gameField.toString(), is(
+                "0 0 0 4 \n" +
+                "0 0 0 2 \n" +
+                "4 4 4 4 \n" +
+                "4 4 4 2 \n"
+        ));
+    }
+
+    //moveLeftTests
+    @Test
+    public void testMoveLeftWithoutAvailableMoves() {
+        int[][] tempCellArray = {
+                {2, 0, 0, 0},
+                {2, 0, 0, 0},
+                {4, 0, 0, 0},
+                {2, 0, 0, 0}
+        };
+
+        getFieldFromIntArray(tempCellArray);
+
+        gameField.moveCells(Direction.LEFT);
+
+        assertThat(gameField.hasMove(), is(false));
+
+        assertThat(gameField.toString(), is(
+                "2 0 0 0 \n" +
+                "2 0 0 0 \n" +
+                "4 0 0 0 \n" +
+                "2 0 0 0 \n"
+        ));
+    }
+
+    @Test
+    public void testMoveLeftMultipurposeTest() {
+        int[][] tempCellArray = {
+                {2, 2, 4, 0},
+                {4, 2, 2, 0},
+                {2, 2, 2, 2},
+                {2, 4, 2, 4}
+        };
+
+        getFieldFromIntArray(tempCellArray);
+
+        gameField.moveCells(Direction.LEFT);
+
+        assertThat(gameField.hasMove(), is(true));
+
+        assertThat(gameField.toString(), is(
+                "4 4 0 0 \n" +
+                "4 4 0 0 \n" +
+                "4 4 0 0 \n" +
+                "2 4 2 4 \n"
+        ));
+    }
+
+    //moveRightTests
+    @Test
+    public void testMoveRightWithoutAvailableMoves() {
+        int[][] tempCellArray = {
+                {0, 0, 0, 2},
+                {0, 0, 0, 2},
+                {0, 0, 0, 4},
+                {0, 0, 0, 2}
+        };
+
+        getFieldFromIntArray(tempCellArray);
+
+        gameField.moveCells(Direction.RIGHT);
+
+        assertThat(gameField.hasMove(), is(false));
+
+        assertThat(gameField.toString(), is(
+                "0 0 0 2 \n" +
+                "0 0 0 2 \n" +
+                "0 0 0 4 \n" +
+                "0 0 0 2 \n"
+        ));
+    }
+
+    @Test
+    public void testMoveRightMultipurposeTest() {
+        int[][] tempCellArray = {
+                {2, 2, 4, 0},
+                {4, 2, 2, 0},
+                {2, 2, 2, 2},
+                {2, 4, 2, 4}
+        };
+
+        getFieldFromIntArray(tempCellArray);
+
+        gameField.moveCells(Direction.RIGHT);
+
+        assertThat(gameField.hasMove(), is(true));
+
+        assertThat(gameField.toString(), is(
+                "0 0 4 4 \n" +
+                "0 0 4 4 \n" +
+                "0 0 4 4 \n" +
+                "2 4 2 4 \n"
+        ));
+    }
 }

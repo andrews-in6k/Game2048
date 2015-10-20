@@ -53,25 +53,31 @@ public class ConsoleGameController implements GameController {
     }
 
     protected void gameProcessControl(char enteredChar) {
+        boolean hasMove = false;
+
         switch (enteredChar) {
             case 'n':
                 gameField.startNewGame();
                 break;
             case '8':
-                gameField.moveCells(Direction.UP);
+                hasMove = gameField.moveCells(Direction.UP);
                 break;
             case '2':
-                gameField.moveCells(Direction.DOWN);
+                hasMove = gameField.moveCells(Direction.DOWN);
                 break;
             case '4':
-                gameField.moveCells(Direction.LEFT);
+                hasMove = gameField.moveCells(Direction.LEFT);
                 break;
             case '6':
-                gameField.moveCells(Direction.RIGHT);
+                hasMove = gameField.moveCells(Direction.RIGHT);
                 break;
             case 'e':
                 isExitPressed = true;
                 break;
+        }
+
+        if (hasMove) {
+            gameField.fillEmptyCell();
         }
     }
 

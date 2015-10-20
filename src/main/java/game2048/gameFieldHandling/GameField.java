@@ -97,7 +97,7 @@ public class GameField {
     }
 
 
-    public void moveCells(Direction direction) {
+    public boolean moveCells(Direction direction) {
         CellsMover cellsMover = new CellsMover();
         hasMove = false;
 
@@ -116,9 +116,7 @@ public class GameField {
                 break;
         }
 
-        if (hasMove()) {
-            fillEmptyCell();
-        }
+        return hasMove;
     }
 
     protected boolean hasMove() {

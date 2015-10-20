@@ -3,6 +3,9 @@ package game2048.gameFieldHandling;
 import game2048.cellHandling.Cell;
 import game2048.controllers.Direction;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Created by employee on 10/16/15.
  */
@@ -15,18 +18,29 @@ public class GameField {
 
     private Cell[][] cells = new Cell[FIELD_SIZE][FIELD_SIZE];
 
+    private List<Cell> emptyCellsList;
+
     CellValueGenerator cellValueGenerator;
+    EmptyCellSelector emptyCellSelector;
 
     public GameField() {
         initEmptyField();
 
+        emptyCellSelector = new RandomEmptyCellSelector();
         cellValueGenerator = new RandomCellValueGenerator();
     }
 
     public GameField(CellValueGenerator cellValueGenerator) {
         initEmptyField();
 
+        emptyCellSelector = new RandomEmptyCellSelector();
         this.cellValueGenerator = cellValueGenerator;
+    }
+
+    public GameField(CellValueGenerator cellValueGenerator, EmptyCellSelector emptyCellSelector) {
+        this(cellValueGenerator);
+
+        this.emptyCellSelector = emptyCellSelector;
     }
 
     public void startNewGame() {
@@ -49,12 +63,23 @@ public class GameField {
 
     public void fillEmptyCell() {
         if (hasEmptyCell()) {
-            EmptyCellSelector emptyCellSelector = new RandomEmptyCellSelector(cells);
+            fillEmptyCellsList();
 
-            emptyCellSelector.getEmptyCell().setCellValue(cellValueGenerator.generateCellValue());
+            emptyCellSelector.getEmptyCell(emptyCellsList).setCellValue(cellValueGenerator.generateCellValue());
         }
     }
 
+    private void fillEmptyCellsList() {
+        emptyCellsList = new ArrayList<>();
+
+        for (int i = 0; i < GameField.FIELD_SIZE; i++) {
+            for (int j = 0; j < GameField.FIELD_SIZE; j++) {
+                if (cells[i][j].isEmpty()) {
+                    emptyCellsList.add(cells[i][j]);
+                }
+            }
+        }
+    }
 
     public boolean hasEmptyCell() {
         for (int i = 0; i < FIELD_SIZE; i++) {
@@ -93,7 +118,7 @@ public class GameField {
         }
     }
 
-    public boolean hasCellWithValueRequiredForVictory() {
+    public boolean hasVictoryCellValue() {
         for (int i = 0; i < FIELD_SIZE; i++) {
             for (int j = 0; j < FIELD_SIZE; j++) {
                 if (cells[i][j].getCellValue() == VALUE_REQUIRED_FOR_VICTORY) {
@@ -105,21 +130,21 @@ public class GameField {
     }
 
     public boolean hasAvailableMove() {
-        if (hasEmptyCell()) {
-            return true;
-        } else {
-            for (int i = 0; i < FIELD_SIZE; i++) {
-                for (int j = 0; j < FIELD_SIZE; j++) {
-                    if (i != FIELD_SIZE - 1) {
-                        if (cells[i][j].getCellValue() == cells[i + 1][j].getCellValue()) {
-                            return true;
-                        }
-                    }
+        return hasEmptyCell() || detectAvailableMoves();
+    }
 
-                    if (j != FIELD_SIZE - 1) {
-                        if (cells[i][j].getCellValue() == cells[i][j + 1].getCellValue()) {
-                            return true;
-                        }
+    private boolean detectAvailableMoves() {
+        for (int i = 0; i < FIELD_SIZE; i++) {
+            for (int j = 0; j < FIELD_SIZE; j++) {
+                if (i != (FIELD_SIZE - 1)) {
+                    if (cells[i][j].equals(cells[i + 1][j])){
+                        return true;
+                    }
+                }
+
+                if (j != (FIELD_SIZE - 1)) {
+                    if (cells[i][j].equals(cells[i][j + 1])){
+                        return true;
                     }
                 }
             }

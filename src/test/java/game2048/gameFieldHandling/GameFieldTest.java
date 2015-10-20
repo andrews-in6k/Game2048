@@ -1,5 +1,6 @@
 package game2048.gameFieldHandling;
 
+import org.junit.Before;
 import org.junit.Test;
 
 import static org.hamcrest.CoreMatchers.containsString;
@@ -13,9 +14,15 @@ public class GameFieldTest {
 
     GameField gameField;
 
-    @Test
-    public void testCreateGameField() {
-        new GameField();
+    private void fillGameField() {
+        for (int i = 0; i < (GameField.FIELD_SIZE * GameField.FIELD_SIZE); i++) {
+            gameField.fillEmptyCell();
+        }
+    }
+
+    @Before
+    public void setUp() throws Exception {
+        gameField = new GameField(new StaticCellValueGenerator(2));
     }
 
     @Test
@@ -32,30 +39,24 @@ public class GameFieldTest {
 
     @Test
     public void testStartGame() {
-        gameField = new GameField(new StaticCellValueGenerator(2));
+        gameField = new GameField(new StaticCellValueGenerator(2), new OneByOneEmptyCellSelector());
 
         gameField.startNewGame();
 
         assertThat(GameField.getScore(), is(0));
 
-        assertThat(gameField.toString(), containsString("2"));
+        assertThat(gameField.toString(), is(
+                "2 2 0 0 \n" +
+                "0 0 0 0 \n" +
+                "0 0 0 0 \n" +
+                "0 0 0 0 \n"
+        ));
     }
 
     @Test
     public void testFillEmptyCell() {
-        gameField = new GameField(new StaticCellValueGenerator(4));
+        fillGameField();
 
-        gameField.fillEmptyCell();
-        assertThat(gameField.toString(), containsString("4"));
-
-        gameField = new GameField(new StaticCellValueGenerator(2));
-
-        gameField.fillEmptyCell();
-        assertThat(gameField.toString(), containsString("2"));
-
-        for (int i = 0; i < (GameField.FIELD_SIZE * GameField.FIELD_SIZE); i++) {
-            gameField.fillEmptyCell();
-        }
         assertThat(gameField.toString(), is(
                 "2 2 2 2 \n" +
                 "2 2 2 2 \n" +
@@ -65,47 +66,76 @@ public class GameFieldTest {
     }
 
     @Test
+    public void testValueGeneratorIsUsed() {
+        gameField = new GameField(new StaticCellValueGenerator(4));
+
+        gameField.fillEmptyCell();
+        assertThat(gameField.toString(), containsString("4"));
+    }
+
+    @Test
     public void testHasEmptyCell() {
-        gameField = new GameField();
-
         assertThat(gameField.hasEmptyCell(), is(true));
+    }
 
-        for (int i = 0; i < (GameField.FIELD_SIZE * GameField.FIELD_SIZE); i++) {
+    @Test
+    public void testHasEmptyCellWithFieldCells() {
+        for (int i = 0; i < (GameField.FIELD_SIZE * GameField.FIELD_SIZE) - 1; i++) {
             gameField.fillEmptyCell();
         }
+
+        assertThat(gameField.hasEmptyCell(), is(true));
+    }
+
+    @Test
+    public void testDoesNotHaveEmptyCell() {
+        fillGameField();
 
         assertThat(gameField.hasEmptyCell(), is(false));
     }
 
     @Test
-    public void testHasCellWithValueRequiredForVictory() {
-        gameField = new GameField(new StaticCellValueGenerator(GameField.VALUE_REQUIRED_FOR_VICTORY));
+    public void testDoesNotHaveVictoryCellValue() {
+        assertThat(gameField.hasVictoryCellValue(), is(false));
+    }
 
-        assertThat(gameField.hasCellWithValueRequiredForVictory(), is(false));
+    @Test
+    public void testHasVictoryCellValue() {
+        gameField = new GameField(new StaticCellValueGenerator(GameField.VALUE_REQUIRED_FOR_VICTORY));
 
         gameField.fillEmptyCell();
 
-        assertThat(gameField.hasCellWithValueRequiredForVictory(), is(true));
+        assertThat(gameField.hasVictoryCellValue(), is(true));
     }
 
     @Test
     public void testHasAvailableMove(){
-        gameField = new GameField(new StaticCellValueGenerator(2));
-
         assertThat(gameField.hasAvailableMove(), is(true));
 
-        for (int i = 0; i < (GameField.FIELD_SIZE * GameField.FIELD_SIZE); i++) {
-            gameField.fillEmptyCell();
-        }
+    }
 
-        assertThat(gameField.hasAvailableMove(), is(true));
-
+    @Test
+    public void testDoesNotHasAvailableMove(){
         gameField = new GameField(new ProgressiveCellValueGenerator());
 
-        for (int i = 0; i < (GameField.FIELD_SIZE * GameField.FIELD_SIZE); i++) {
-            gameField.fillEmptyCell();
-        }
+        fillGameField();
 
         assertThat(gameField.hasAvailableMove(), is(false));
+    }
+
+    @Test
+    public void testHasAvailableMoveWhenGameFieldFilled(){
+        gameField = new GameField(new ProgressiveCellValueGenerator(), new OneByOneEmptyCellSelector());
+
+        fillGameField();
+
+        gameField.getCells()[0][0].setCellValue(2);
+        gameField.getCells()[0][1].setCellValue(2);
+        gameField.getCells()[1][0].setCellValue(2);
+        gameField.getCells()[2][3].setCellValue(2);
+        gameField.getCells()[3][2].setCellValue(2);
+        gameField.getCells()[3][0].setCellValue(2);
+
+        assertThat(gameField.hasAvailableMove(), is(true));
     }
 }

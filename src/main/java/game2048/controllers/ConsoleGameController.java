@@ -26,7 +26,7 @@ public class ConsoleGameController implements GameController {
         gameFieldPrinter = new ANSIGameFieldPrinter(printStream);
     }
 
-    public void startController() {
+    public void startGame() {
         isExitPressed = false;
         winner = false;
 
@@ -37,7 +37,7 @@ public class ConsoleGameController implements GameController {
             gameProcessControl(scanner.next().charAt(0));
 
             if (!winner) {
-                if (gameField.hasCellWithValueRequiredForVictory()) {
+                if (gameField.hasVictoryCellValue()) {
                     printWinnerMenu();
                     hasWinner(scanner.next().charAt(0));
                 }

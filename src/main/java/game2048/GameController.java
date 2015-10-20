@@ -5,6 +5,6 @@ package game2048;
  */
 public interface GameController {
 
-    void startController();
+    void startGame();
 
 }

@@ -63,7 +63,7 @@ public class MoveCells {
                 tempIndex = row + 1;
 
                 while (tempIndex < GameField.FIELD_SIZE) {
-                    if (cells[row][col].getCellValue() == cells[tempIndex][col].getCellValue()) {
+                    if (cells[row][col].equals(cells[tempIndex][col])) {
                         verticalCellsAddition();
                         break;
                     } else if (!cells[tempIndex][col].isEmpty()) {
@@ -95,7 +95,7 @@ public class MoveCells {
                 tempIndex = row - 1;
 
                 while (tempIndex >= 0) {
-                    if (cells[row][col].getCellValue() == cells[tempIndex][col].getCellValue()) {
+                    if (cells[row][col].equals(cells[tempIndex][col])) {
                         verticalCellsAddition();
                         break;
                     } else if (!cells[tempIndex][col].isEmpty()) {
@@ -135,7 +135,7 @@ public class MoveCells {
                 tempIndex = col + 1;
 
                 while (tempIndex < GameField.FIELD_SIZE) {
-                    if (cells[row][col].getCellValue() == cells[row][tempIndex].getCellValue()) {
+                    if (cells[row][col].equals(cells[row][tempIndex])) {
                         horizontalCellsAddition();
                         break;
                     } else if (!cells[row][tempIndex].isEmpty()) {
@@ -167,7 +167,7 @@ public class MoveCells {
                 tempIndex = col - 1;
 
                 while (tempIndex >= 0) {
-                    if (cells[row][col].getCellValue() == cells[row][tempIndex].getCellValue()) {
+                    if (cells[row][col].equals(cells[row][tempIndex])) {
                         horizontalCellsAddition();
                         break;
                     } else if (!cells[row][tempIndex].isEmpty()) {

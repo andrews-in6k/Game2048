@@ -36,6 +36,22 @@ public class Cell {
         return calculateCellColor();
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Cell cell = (Cell) o;
+
+        return cellValue == cell.cellValue;
+
+    }
+
+    @Override
+    public int hashCode() {
+        return cellValue;
+    }
+
     private String calculateCellColor() {
         int index = (int) (Math.log(cellValue) / Math.log(BASIC_NUMBER)) % 8;
         CellColor[] cellColors = CellColor.values();

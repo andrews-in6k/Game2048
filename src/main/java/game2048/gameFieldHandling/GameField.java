@@ -18,33 +18,33 @@ public class GameField {
     CellValueGenerator cellValueGenerator;
 
     public GameField() {
-        initEmptyCells();
+        initEmptyField();
 
         cellValueGenerator = new RandomCellValueGenerator();
     }
 
     public GameField(CellValueGenerator cellValueGenerator) {
-        initEmptyCells();
+        initEmptyField();
 
         this.cellValueGenerator = cellValueGenerator;
     }
 
     public void startNewGame() {
-        initEmptyCells();
-
-        score = 0;
+        initEmptyField();
 
         for (int i = 0; i < NEW_GAME_NUMBERS_COUNT; i++) {
             fillEmptyCell();
         }
     }
 
-    private void initEmptyCells() {
+    private void initEmptyField() {
         for (int i = 0; i < FIELD_SIZE; i++) {
             for (int j = 0; j < FIELD_SIZE; j++) {
                 cells[i][j] = new Cell();
             }
         }
+
+        score = 0;
     }
 
     public void fillEmptyCell() {

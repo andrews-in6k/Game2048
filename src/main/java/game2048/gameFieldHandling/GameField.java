@@ -116,9 +116,13 @@ public class GameField {
                 break;
         }
 
-        if (hasMove) {
+        if (hasMove()) {
             fillEmptyCell();
         }
+    }
+
+    protected boolean hasMove() {
+        return hasMove;
     }
 
     public boolean hasVictoryCellValue() {

@@ -1,6 +1,6 @@
 package game2048.gameFieldHandling;
 
-import game2048.controllers.Direction;
+import game2048.controllers.Options;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -162,7 +162,7 @@ public class GameFieldTest {
 
         getFieldFromIntArray(tempCellArray);
 
-        gameField.moveCells(Direction.UP);
+        gameField.moveCells(Options.UP);
 
         assertThat(gameField.hasMove(), is(false));
 
@@ -185,7 +185,7 @@ public class GameFieldTest {
 
         getFieldFromIntArray(tempCellArray);
 
-        gameField.moveCells(Direction.UP);
+        gameField.moveCells(Options.UP);
 
         assertThat(gameField.hasMove(), is(true));
 
@@ -208,7 +208,7 @@ public class GameFieldTest {
 
         getFieldFromIntArray(tempCellArray);
 
-        gameField.moveCells(Direction.UP);
+        gameField.moveCells(Options.UP);
 
         assertThat(gameField.hasMove(), is(true));
 
@@ -231,7 +231,7 @@ public class GameFieldTest {
 
         getFieldFromIntArray(tempCellArray);
 
-        gameField.moveCells(Direction.UP);
+        gameField.moveCells(Options.UP);
 
         assertThat(gameField.hasMove(), is(true));
 
@@ -254,7 +254,7 @@ public class GameFieldTest {
 
         getFieldFromIntArray(tempCellArray);
 
-        gameField.moveCells(Direction.UP);
+        gameField.moveCells(Options.UP);
 
         assertThat(gameField.hasMove(), is(false));
 
@@ -278,7 +278,7 @@ public class GameFieldTest {
 
         getFieldFromIntArray(tempCellArray);
 
-        gameField.moveCells(Direction.DOWN);
+        gameField.moveCells(Options.DOWN);
 
         assertThat(gameField.hasMove(), is(false));
 
@@ -301,7 +301,7 @@ public class GameFieldTest {
 
         getFieldFromIntArray(tempCellArray);
 
-        gameField.moveCells(Direction.DOWN);
+        gameField.moveCells(Options.DOWN);
 
         assertThat(gameField.hasMove(), is(true));
 
@@ -325,7 +325,7 @@ public class GameFieldTest {
 
         getFieldFromIntArray(tempCellArray);
 
-        gameField.moveCells(Direction.LEFT);
+        gameField.moveCells(Options.LEFT);
 
         assertThat(gameField.hasMove(), is(false));
 
@@ -348,7 +348,7 @@ public class GameFieldTest {
 
         getFieldFromIntArray(tempCellArray);
 
-        gameField.moveCells(Direction.LEFT);
+        gameField.moveCells(Options.LEFT);
 
         assertThat(gameField.hasMove(), is(true));
 
@@ -372,7 +372,7 @@ public class GameFieldTest {
 
         getFieldFromIntArray(tempCellArray);
 
-        gameField.moveCells(Direction.RIGHT);
+        gameField.moveCells(Options.RIGHT);
 
         assertThat(gameField.hasMove(), is(false));
 
@@ -395,7 +395,7 @@ public class GameFieldTest {
 
         getFieldFromIntArray(tempCellArray);
 
-        gameField.moveCells(Direction.RIGHT);
+        gameField.moveCells(Options.RIGHT);
 
         assertThat(gameField.hasMove(), is(true));
 

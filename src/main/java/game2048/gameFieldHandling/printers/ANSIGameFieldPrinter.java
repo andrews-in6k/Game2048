@@ -42,4 +42,27 @@ public class ANSIGameFieldPrinter implements GameFieldPrinter {
             }
         }
     }
+
+    public void printGameProcessHeader() {
+        printStream.println("n - new game");
+        printStream.println("8 - move up");
+        printStream.println("2 - move down");
+        printStream.println("4 - move left");
+        printStream.println("6 - move right");
+        printStream.println("e - exit");
+    }
+
+    public void printWinnerMenu() {
+        printStream.println("YOU ARE THE WINNER");
+        printStream.println("1 - keep going");
+        printStream.println("n - new game");
+        printStream.println("e - exit");
+    }
+
+    public void printLooserMenu() {
+        printStream.println("YOU ARE LOOSE");
+        printStream.println("n - new game");
+        printStream.println("e - exit");
+    }
+
 }

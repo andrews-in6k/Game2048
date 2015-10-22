@@ -1,7 +1,7 @@
 package game2048.gameFieldHandling;
 
 import game2048.cellHandling.Cell;
-import game2048.controllers.Direction;
+import game2048.controllers.Options;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -97,11 +97,11 @@ public class GameField {
     }
 
 
-    public boolean moveCells(Direction direction) {
+    public boolean moveCells(Options options) {
         CellsMover cellsMover = new CellsMover();
         hasMove = false;
 
-        switch (direction) {
+        switch (options) {
             case UP:
                 cellsMover.moveUp();
                 break;

@@ -8,4 +8,10 @@ import game2048.gameFieldHandling.GameField;
 public interface GameFieldPrinter {
 
     void printGameField(GameField gameField);
+
+    void printGameProcessHeader();
+
+    void printWinnerMenu();
+
+    void printLooserMenu();
 }

@@ -50,7 +50,7 @@ public class ConsoleGameInputStream implements GameInputStream{
     public Options looserControl() {
         switch (scanner.next().charAt(0)) {
             case 'n':
-                return Options.KEEP_GOING;
+                return Options.NEW_GAME;
             default:
                 return Options.EXIT;
         }

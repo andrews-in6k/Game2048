@@ -184,7 +184,7 @@ public class GameField {
         return cells;
     }
 
-    //ClassMover
+    //Class CellsMover
     protected class CellsMover {
 
         private int row;

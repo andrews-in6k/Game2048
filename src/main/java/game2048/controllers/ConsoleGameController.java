@@ -15,6 +15,7 @@ public class ConsoleGameController implements GameController {
     private GameFieldPrinter gameFieldPrinter;
 
     Options option;
+    private boolean winner;
 
     public ConsoleGameController(GameField gameField, GameInputStream gameInputStream, GameFieldPrinter gameFieldPrinter) {
         this.gameField = gameField;
@@ -26,7 +27,7 @@ public class ConsoleGameController implements GameController {
     public void startGame() {
         boolean hasMoved;
         boolean isExitPressed = false;
-        boolean winner = false;
+        winner = false;
 
         while (!isExitPressed) {
             hasMoved = false;
@@ -34,6 +35,17 @@ public class ConsoleGameController implements GameController {
             gameFieldPrinter.printGameProcessHeader();
 
             option = gameInputStream.gameProcessControl();
+
+            if (gameField.hasVictoryCellValue() && !winner) {
+                gameFieldPrinter.printWinnerMenu();
+                winner = true;
+                option = gameInputStream.winnerControl();
+            }
+
+            if (!gameField.hasAvailableMove()) {
+                gameFieldPrinter.printLooserMenu();
+                option = gameInputStream.looserControl();
+            }
 
             switch (option){
                 case NEW_GAME:
@@ -61,16 +73,6 @@ public class ConsoleGameController implements GameController {
 
             if (hasMoved) {
                 gameField.fillEmptyCell();
-            }
-
-            if (gameField.hasVictoryCellValue() && !winner) {
-                gameFieldPrinter.printWinnerMenu();
-                gameInputStream.winnerControl();
-            }
-
-            if (!gameField.hasAvailableMove()) {
-                gameFieldPrinter.printWinnerMenu();
-                gameInputStream.looserControl();
             }
 
             gameFieldPrinter.printGameField(gameField);

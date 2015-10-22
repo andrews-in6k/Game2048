@@ -21,9 +21,10 @@ public class ConsoleGameController implements GameController {
     private boolean winner;
     private GameFieldPrinter gameFieldPrinter;
 
-    public ConsoleGameController(GameField gameField) {
+    public ConsoleGameController(GameField gameField, Scanner scanner, GameFieldPrinter gameFieldPrinter) {
         this.gameField = gameField;
-        gameFieldPrinter = new ANSIGameFieldPrinter(printStream);
+        this.scanner = scanner;
+        this.gameFieldPrinter = gameFieldPrinter;
     }
 
     public void startGame() {

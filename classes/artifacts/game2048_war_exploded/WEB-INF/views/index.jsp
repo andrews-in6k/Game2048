@@ -32,5 +32,11 @@
       }
       %>
       </table>
+
+    <a href="/action/1">new</a>
+    <a href="/action/8">up</a>
+    <a href="/action/5">down</a>
+    <a href="/action/4">left</a>
+    <a href="/action/6">right</a>
   </body>
 </html>

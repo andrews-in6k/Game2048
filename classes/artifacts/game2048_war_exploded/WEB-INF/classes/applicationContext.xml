@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+       <bean id="gameField" class="game2048.gameFieldHandling.GameField" />
+
+       <bean id="systemIn" class="game2048.StreamFactory" factory-method="getInputStream" />
+       <bean id="systemOut" class="game2048.StreamFactory" factory-method="getPrintStream" />
+
+       <bean id="scanner" class="java.util.Scanner">
+              <constructor-arg ref="systemIn" />
+       </bean>
+       <bean id="printStream" class="java.io.PrintStream">
+              <constructor-arg ref="systemOut" />
+       </bean>
+
+       <bean id="consoleGameInputStream" class="game2048.gameFieldHandling.scanners.ConsoleGameInputStream">
+              <constructor-arg ref="scanner" />
+       </bean>
+
+       <bean id="ansiPrinter" class="game2048.gameFieldHandling.printers.ANSIGameFieldPrinter">
+              <constructor-arg ref="printStream" />
+       </bean>
+
+       <bean id="gameController" class="game2048.controllers.ConsoleGameController">
+              <constructor-arg ref="gameField" />
+              <constructor-arg ref="consoleGameInputStream" />
+              <constructor-arg ref="ansiPrinter" />
+       </bean>
+</beans>

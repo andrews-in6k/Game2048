@@ -9,7 +9,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 public class Run {
 
     public static void main(String[] args) {
-        ApplicationContext applicationContext = new ClassPathXmlApplicationContext("xmlConfig.xml");
+        ApplicationContext applicationContext = new ClassPathXmlApplicationContext("applicationContext.xml");
         GameController gameController = (GameController)applicationContext.getBean("gameController");
 
         gameController.startGame();

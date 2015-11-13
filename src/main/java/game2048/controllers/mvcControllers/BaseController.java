@@ -29,7 +29,7 @@ public class BaseController {
     }
 
     @RequestMapping(method = RequestMethod.POST)
-    public String controlGame(@ModelAttribute("gameField") GameField gameField,
+    public @ResponseBody String controlGame(@ModelAttribute("gameField") GameField gameField,
                               @RequestParam int option,
                               ModelMap model
     ){
@@ -63,6 +63,14 @@ public class BaseController {
             gameField.fillEmptyCell();
         }
 
-        return "redirect:/";
+        String result = "";
+
+        for (int i = 0; i < 4; i++){
+            for (int j = 0; j < 4; j++){
+                result += gameField.getCells()[i][j].getCellValue() + " ";
+            }
+        }
+
+        return result;
     }
 }

@@ -71,6 +71,7 @@
           for (int j = 0; j < 4; j++){
           %>
         document.getElementsByClassName("cell")[+<%=i%> * 4 + +<%=j%>].innerHTML = <%=gameField.getCells()[i][j].getCellValue()%>;
+        console.log(<%=gameField.getCells()[i][j].getCellValue()%>);
         <%
         }
       }%>
@@ -89,13 +90,15 @@
         {
           if (xhr.readyState == 4 && xhr.status == 200)
           {
-            outputGameField();
+            var gameField = xhr.responseText.split(" ");
+
+            for (var i = 0; i < 16; i++){
+              document.getElementsByClassName("cell")[i].innerHTML = gameField[i];
+            }
           }
         };
 
         xhr.send(body);
-
-        console.log(e.keyCode);
       });
     </script>
 

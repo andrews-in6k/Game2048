@@ -1,0 +1,17 @@
+.base{
+    position: absolute;
+    align-self: center;
+}
+.row{
+
+}
+.cell{
+    height: 100px;
+    width: 100px;
+    margin: 15px;
+    float: left;
+    background-color: #e5ffd4;
+    text-align: center;
+    line-height: 100px;
+    font-size: 25px;
+}

@@ -28,27 +28,27 @@ public class BaseController {
         return gameField;
     }
 
-    @RequestMapping(value = "action/{option}", method = RequestMethod.GET)
+    @RequestMapping(method = RequestMethod.POST)
     public String controlGame(@ModelAttribute("gameField") GameField gameField,
-                              @PathVariable int option,
+                              @RequestParam int option,
                               ModelMap model
     ){
         boolean hasMoved = false;
 
         switch (option){
-            case 1:
+            case 78:
                 gameField.startNewGame();
                 break;
-            case 8:
+            case 38:
                 hasMoved = gameField.moveCells(Options.UP);
                 break;
-            case 5:
+            case 40:
                 hasMoved = gameField.moveCells(Options.DOWN);
                 break;
-            case 4:
+            case 37:
                 hasMoved = gameField.moveCells(Options.LEFT);
                 break;
-            case 6:
+            case 39:
                 hasMoved = gameField.moveCells(Options.RIGHT);
                 break;
 //            case KEEP_GOING:

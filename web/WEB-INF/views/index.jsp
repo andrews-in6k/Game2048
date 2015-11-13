@@ -12,31 +12,51 @@
     <title>Game 2048</title>
   </head>
   <body>
-    <%GameField gameField = (GameField)session.getAttribute("gameField");%>
-      <table>
-      <%
-      for (int i = 0; i < 4; i++) {
-      %>
-        <tr>
+    <div id="test">
+      <%GameField gameField = (GameField)session.getAttribute("gameField");%>
+        <table>
         <%
-        for (int j = 0; j < 4; j++) {
+        for (int i = 0; i < 4; i++) {
         %>
-            <td>
-              <%=gameField.getCells()[i][j].getCellValue()%>
-            </td>
-        <%
+          <tr>
+          <%
+          for (int j = 0; j < 4; j++) {
+          %>
+              <td>
+                <%=gameField.getCells()[i][j].getCellValue()%>
+              </td>
+          <%
+          }
+          %>
+          </tr>
+          <%
         }
         %>
-        </tr>
-        <%
-      }
-      %>
-      </table>
+        </table>
+    </div>
 
-    <a href="/action/1">new</a>
-    <a href="/action/8">up</a>
-    <a href="/action/5">down</a>
-    <a href="/action/4">left</a>
-    <a href="/action/6">right</a>
+    <script>
+      document.body.addEventListener("keydown", function(e) {
+
+        var xhr = new XMLHttpRequest();
+
+        var body = 'option=' + encodeURIComponent("" + e.keyCode);
+
+        xhr.open("POST", "/", true)
+        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded')
+
+        xhr.onreadystatechange = function()
+        {
+          if (xhr.readyState == 4 && xhr.status == 200)
+          {
+
+          }
+        }
+
+        xhr.send(body);
+
+        console.log(e.keyCode);
+      });
+    </script>
   </body>
 </html>
